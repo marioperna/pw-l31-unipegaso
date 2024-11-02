@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/marioperna/pw-l31-unipegaso/issues"
   },
-  "homepage": "https://github.com/marioperna/pw-l31-unipegaso#readme"
+  "homepage": "https://github.com/marioperna/pw-l31-unipegaso#readme",
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
 }
