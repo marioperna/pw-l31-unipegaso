@@ -1,0 +1,24 @@
+{
+  "name": "pw-l31-unipegaso",
+  "version": "1.0.0",
+  "description": "Traccia 1.5 Sviluppo di una dashboard in JavaScript per l'analisi delle prestazioni aziendali nel settore primario",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marioperna/pw-l31-unipegaso.git"
+  },
+  "keywords": [
+    "project-work",
+    "unipegaso",
+    "L-31"
+  ],
+  "author": "Mario Perna",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marioperna/pw-l31-unipegaso/issues"
+  },
+  "homepage": "https://github.com/marioperna/pw-l31-unipegaso#readme"
+}
