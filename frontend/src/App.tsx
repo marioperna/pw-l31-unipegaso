@@ -6,9 +6,7 @@ function App() {
 
   return (
     <>
-      <h1 className="text-3xl font-bold underline">
-        Tailwind CSS + Vite + React + TypeScript
-      </h1>
+      <h1>UNIPEGASO - PROJECT WORK</h1>
     </>
   )
 }
