@@ -31,4 +31,4 @@ jobs:
           context: ./backend
           file: ./backend/Dockerfile  # Modifica il percorso se il Dockerfile si trova in una directory diversa
           push: true
-          tags: ghcr.io/${{ github.actor }}/${{ github.repository }}/backend:${{github.ref_name}}
+          tags: ghcr.io/${{ github.repository }}/backend:${{github.ref_name}}
