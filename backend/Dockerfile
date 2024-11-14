@@ -1,15 +1,15 @@
-FROM node:22.11.0-slim
-
-ENV NODE_ENV=production
+FROM node:22.11.0-alpine AS base
 
 WORKDIR /app
 
-RUN useradd --user-group --create-home --shell /bin/false node
+COPY package*.json ./
 
-COPY --chown=node:node . .
+RUN npm install --only=production
 
-RUN npm ci --only=production && npm cache clean --force
+COPY . .
 
 EXPOSE 3000
 
-CMD ["node", "index.js"]
+ENV NODE_ENV=production
+
+CMD ["npm", "start"]
