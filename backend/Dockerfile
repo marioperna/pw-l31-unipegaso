@@ -5,7 +5,6 @@ ENV NODE_ENV=production
 WORKDIR /app
 
 RUN useradd --user-group --create-home --shell /bin/false node
-USER node
 
 COPY --chown=node:node . .
 
