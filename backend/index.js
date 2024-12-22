@@ -3,6 +3,7 @@ const app = express();
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
+const { WEBSOCKET_CMD } = require('./websocket-cmd');
 
 getOrigin = () => {
   if (process.env.NODE_ENV === 'production') {
@@ -15,15 +16,20 @@ getOrigin = () => {
   }
 }
 
-const io = new Server(server, {
+const PORT = process.env.PORT || 3000;
+const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 5000;
+const IO = new Server(server, {
   cors: {
     origin: getOrigin(),
   }
 });
-const PORT = process.env.PORT || 3000;
 
-io.on('connection', (socket) => {
+IO.on('connection', (socket) => {
   console.log('a user connected');
+
+  setInterval(() => {
+    socket.emit(WEBSOCKET_CMD.TEMPERATURE, 'Hello from server');
+  }, WEBSOCKET_SEND_INTERVAL);
 });
 
 server.listen(PORT, () => {

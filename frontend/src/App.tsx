@@ -21,6 +21,10 @@ function App() {
     //   setFooEvents(previous => [...previous, value]);
     // }
 
+    socket.on('GET_DASHBOARD_TEMPERATURE', (data) => {
+      console.log('temperature', data)
+    });
+
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
     // socket.on('foo', onFooEvent);
