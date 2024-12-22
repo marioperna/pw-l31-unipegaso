@@ -200,7 +200,7 @@ function App() {
                   {/* durata */}
                   <div id="period_card" className='w-full shadow-md rounded-md font-bold p-4 bg-white'>
                     <h2 className='text-xl'>Periodo</h2>
-                    <p>{currentCultivation?.periodoColtivazione.inizio} - {currentCultivation?.periodoColtivazione.fine}</p>
+                    <p>{currentCultivation?.periodoColtivazione?.inizio} - {currentCultivation?.periodoColtivazione?.fine}</p>
                     <p className='text-sm'>({currentCultivation?.durata?.min} - {currentCultivation?.durata?.max} {currentCultivation?.durata?.unitaMisura})</p>
                   </div>
 
