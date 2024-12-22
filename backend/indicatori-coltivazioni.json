@@ -1,0 +1,130 @@
+{
+    "MAIS": {
+        "nome": "Mais (Zea mays)",
+        "descrizione": "Il mais ",
+        "periodoColtivazione": {
+            "inizio": "aprile",
+            "fine": "settembre"
+        },
+        "periodoRaccolto": {
+            "inizio": "settembre",
+            "fine": "novembre"
+        },
+        "durata": {
+            "min": 90,
+            "max": 120,
+            "unitaMisura": "giorni"
+        },
+        "quantitaAcqua": {
+            "min": 500,
+            "max": 800,
+            "unitaMisura": "mm"
+        },
+        "umiditaSuolo": {
+            "min": 60,
+            "max": 70,
+            "unitaMisura": "%"
+        },
+        "percentualeSole": {
+            "min": 70,
+            "max": 80,
+            "unitaMisura": "%"
+        }
+    },
+    "SEGALE": {
+        "nome": "Segale (Secale cereale)",
+        "descrizione":"",
+        "periodoColtivazione": {
+            "inizio": "ottobre",
+            "fine": "novembre"
+        },
+        "periodoRaccolto": {
+            "inizio": "giugno",
+            "fine": "luglio"
+        },
+        "durata": {
+            "min": 180,
+            "max": 220,
+            "unitaMisura": "giorni"
+        },
+        "quantitaAcqua": {
+            "min": 300,
+            "max": 500,
+            "unitaMisura": "mm"
+        },
+        "umiditaSuolo": {
+            "min": 50,
+            "max": 60,
+            "unitaMisura": "%"
+        },
+        "percentualeSole": {
+            "min": 60,
+            "max": 70,
+            "unitaMisura": "%"
+        }
+    },
+    "GRANO_TENERO": {
+        "nome": "Grano tenero (Triticum aestivum)",
+        "descrizione": "",
+        "periodoColtivazione": {
+            "inizio": "ottobre",
+            "fine": "novembre"
+        },
+        "periodoRaccolto": {
+            "inizio": "giugno",
+            "fine": "luglio"
+        },
+        "durata": {
+            "min": 220,
+            "max": 240,
+            "unitaMisura": "giorni"
+        },
+        "quantitaAcqua": {
+            "min": 450,
+            "max": 650,
+            "unitaMisura": "mm"
+        },
+        "umiditaSuolo": {
+            "min": 55,
+            "max": 65,
+            "unitaMisura": "%"
+        },
+        "percentualeSole": {
+            "min": 70,
+            "max": 80,
+            "unitaMisura": "%"
+        }
+    },
+    "ORZO": {
+        "nome": "Orzo (Hordeum vulgare)",
+        "descrizione": "",
+        "periodoColtivazione": {
+            "inizio": "marzo",
+            "fine": "aprile"
+        },
+        "periodoRaccolto": {
+            "inizio": "luglio",
+            "fine": "luglio"
+        },
+        "durata": {
+            "min": 90,
+            "max": 120,
+            "unitaMisura": "giorni"
+        },
+        "quantitaAcqua": {
+            "min": 400,
+            "max": 500,
+            "unitaMisura": "mm"
+        },
+        "umiditaSuolo": {
+            "min": 50,
+            "max": 60,
+            "unitaMisura": "%"
+        },
+        "percentualeSole": {
+            "min": 65,
+            "max": 75,
+            "unitaMisura": "%"
+        }
+    }
+}

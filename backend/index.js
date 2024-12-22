@@ -4,6 +4,7 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const { WEBSOCKET_CMD } = require('./websocket-cmd');
+const INDICATORI_COLTIVAZIONI = require('./indicatori-coltivazioni');
 
 getOrigin = () => {
   if (process.env.NODE_ENV === 'production') {
@@ -24,12 +25,24 @@ const IO = new Server(server, {
   }
 });
 
+
+// GESTIONE WEBSOCKET
 IO.on('connection', (socket) => {
   console.log('a user connected');
 
   setInterval(() => {
     socket.emit(WEBSOCKET_CMD.TEMPERATURE, 'Hello from server');
   }, WEBSOCKET_SEND_INTERVAL);
+});
+
+// GESTIONE API
+app.get('/api/indicatori-coltivazioni/:codiceColtivazione', (req, res) => {
+  const { codiceColtivazione } = req.params;
+  if(!codiceColtivazione) {
+    return res.status(400).send('codiceColtivazione is required');
+  }
+  // send the json
+  return res.json(INDICATORI_COLTIVAZIONI[codiceColtivazione]);
 });
 
 server.listen(PORT, () => {
