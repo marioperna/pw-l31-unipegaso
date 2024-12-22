@@ -6,6 +6,11 @@
             "inizio": "aprile",
             "fine": "settembre"
         },
+        "temperaturaOttimale": {
+            "min": 20,
+            "max": 30,
+            "unitaMisura": "°C"
+        },
         "periodoRaccolto": {
             "inizio": "settembre",
             "fine": "novembre"
@@ -18,7 +23,7 @@
         "quantitaAcqua": {
             "min": 500,
             "max": 800,
-            "unitaMisura": "mm"
+            "unitaMisura": "mm (l/m²)"
         },
         "umiditaSuolo": {
             "min": 60,
@@ -38,6 +43,11 @@
             "inizio": "ottobre",
             "fine": "novembre"
         },
+        "temperaturaOttimale": {
+            "min": 15,
+            "max": 25,
+            "unitaMisura": "°C"
+        },
         "periodoRaccolto": {
             "inizio": "giugno",
             "fine": "luglio"
@@ -50,7 +60,7 @@
         "quantitaAcqua": {
             "min": 300,
             "max": 500,
-            "unitaMisura": "mm"
+            "unitaMisura": "mm (l/m²)"
         },
         "umiditaSuolo": {
             "min": 50,
@@ -70,6 +80,11 @@
             "inizio": "ottobre",
             "fine": "novembre"
         },
+        "temperaturaOttimale": {
+            "min": 15,
+            "max": 24,
+            "unitaMisura": "°C"
+        },
         "periodoRaccolto": {
             "inizio": "giugno",
             "fine": "luglio"
@@ -82,7 +97,7 @@
         "quantitaAcqua": {
             "min": 450,
             "max": 650,
-            "unitaMisura": "mm"
+            "unitaMisura": "mm (l/m²)"
         },
         "umiditaSuolo": {
             "min": 55,
@@ -106,6 +121,11 @@
             "inizio": "luglio",
             "fine": "luglio"
         },
+        "temperaturaOttimale": {
+            "min": 12,
+            "max": 25,
+            "unitaMisura": "°C"
+        },
         "durata": {
             "min": 90,
             "max": 120,
@@ -114,7 +134,7 @@
         "quantitaAcqua": {
             "min": 400,
             "max": 500,
-            "unitaMisura": "mm"
+            "unitaMisura": "mm (l/m²)"
         },
         "umiditaSuolo": {
             "min": 50,
