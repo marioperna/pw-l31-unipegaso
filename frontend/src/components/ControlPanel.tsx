@@ -3,9 +3,10 @@ import { Box, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextFie
 // return the value on the parent component
 interface ControlPanelProps {
   onCultivationSelectorChange: (cultivationCode: string) => void;
+  showControlForTab: number;
 }
 
-function ControlPanel({ onCultivationSelectorChange }: ControlPanelProps) {
+function ControlPanel({ onCultivationSelectorChange, showControlForTab }: ControlPanelProps) {
 
     const getCultivationCode = (cultivationCode: string) => {
         onCultivationSelectorChange(cultivationCode);
@@ -28,38 +29,56 @@ function ControlPanel({ onCultivationSelectorChange }: ControlPanelProps) {
                     <MenuItem value={"ORZO"}>Orzo (Hordeum vulgare)</MenuItem>
                 </Select>
 
-                <TextField
-                    label="Temperatura"
-                    id="controller-temperatura"
-                    type='number'
-                    slotProps={{
-                        input: {
-                            endAdornment: <InputAdornment position="end">°C</InputAdornment>,
-                        },
-                    }}
-                />
+                {/* TAB 0 - COND. Climatiche */}
+                {showControlForTab === 0 && <>
+                    <TextField
+                        label="Temperatura"
+                        id="controller-temperatura"
+                        type='number'
+                        slotProps={{
+                            input: {
+                                endAdornment: <InputAdornment position="end">°C</InputAdornment>,
+                            },
+                        }}
+                    />
 
-                <TextField
-                    label="Perc. Umidità"
-                    id="controller-umidita"
-                    type='number'
-                    slotProps={{
-                        input: {
-                            endAdornment: <InputAdornment position="end">%</InputAdornment>,
-                        },
-                    }}
-                />
+                    <TextField
+                        label="Perc. Umidità"
+                        id="controller-umidita"
+                        type='number'
+                        slotProps={{
+                            input: {
+                                endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                            },
+                        }}
+                    />
 
-                <TextField
-                    label="Q.tà Acqua"
-                    id="controller-acqua"
-                    type='number'
-                    slotProps={{
-                        input: {
-                            endAdornment: <InputAdornment position="end">mm (l/m²)</InputAdornment>,
-                        },
-                    }}
-                />
+                    <TextField
+                        label="Q.tà Acqua"
+                        id="controller-acqua"
+                        type='number'
+                        slotProps={{
+                            input: {
+                                endAdornment: <InputAdornment position="end">mm (l/m²)</InputAdornment>,
+                            },
+                        }}
+                    />
+                </>}
+
+
+                {showControlForTab === 1 && <>
+                    <TextField
+                        label="Q.tà Fertilizzante"
+                        id="controller-fertilizzante"
+                        type='number'
+                        slotProps={{
+                            input: {
+                                endAdornment: <InputAdornment position="end">kg/m²</InputAdornment>,
+                            },
+                        }}
+                    />
+                </>}
+               
             </Box>
         </FormControl>
     );

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import CustomLineChart from './CustomLineChart';
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -32,30 +33,31 @@ function a11yProps(index: number) {
   };
 }
 
-function DashboardTabs() {
+function DashboardTabs({ onTabChange }: {onTabChange: any}) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+    onTabChange(newValue);
   };
+
+
 
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
+          <Tab label="Condizioni Climatiche" {...a11yProps(0)} />
+          <Tab label="Condizioni Produttive" {...a11yProps(1)} />
+          <Tab label="Condizioni Economiche" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        Item One
+        <CustomLineChart />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        Item Two
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        Item Three
       </CustomTabPanel>
     </Box>
   );

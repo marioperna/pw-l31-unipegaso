@@ -3,7 +3,7 @@ import './App.css';
 import { ConnectionState } from './components/ConnectionState';
 import ControlPanel from './components/ControlPanel';
 import CultivationStats from './components/CultivationStats';
-import DashboardTabs from './components/DashboardModePicker';
+import DashboardTabs from './components/DashboardTabs';
 import { socket } from './socket';
 import { Cultivation } from './types/cultivation';
 
@@ -11,6 +11,7 @@ function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [fooEvents, setFooEvents] = useState([]);
   const [currentCultivation, setCurrentCultivation] = useState({} as Cultivation);
+  const [currentTab, setCurrentTab] = useState(0);
 
 
   const getIndicatoreColtivazione = (codiceColtivazione: string) => {
@@ -82,7 +83,7 @@ function App() {
             </div>
 
             <div className='p-4'>
-              <ControlPanel onCultivationSelectorChange={getIndicatoreColtivazione} />
+              <ControlPanel showControlForTab={currentTab} onCultivationSelectorChange={getIndicatoreColtivazione} />
             </div>
           </div>
 
@@ -92,11 +93,15 @@ function App() {
                 <h1 className='font-bold'>Andamento e Previsioni</h1>
               </div>
               
-              
-              <div id="contents" className='flex flex-col mt-4  p-4'>
+              <div id="contents" className='flex flex-col justify-between h-full p-4'>
                 {/* contents here */}
-                <CultivationStats currentCultivation={currentCultivation} />
-                <DashboardTabs />
+                <div id="cultivation_stats">
+                  <CultivationStats currentCultivation={currentCultivation} />
+                </div>
+                
+                <div id="dashboard_tabs" className='bg-white p-4 mt-4 rounded-md shadow-md'>
+                  <DashboardTabs onTabChange={(ct: number) => setCurrentTab(ct) } />
+                </div>
                 {/* end contents */}
               </div>
             </div>
