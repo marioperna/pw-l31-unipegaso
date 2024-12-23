@@ -6,12 +6,15 @@ import CultivationStats from './components/CultivationStats';
 import DashboardTabs from './components/DashboardTabs';
 import { socket } from './socket';
 import { Cultivation } from './types/cultivation';
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [fooEvents, setFooEvents] = useState([]);
   const [currentCultivation, setCurrentCultivation] = useState({} as Cultivation);
   const [currentTab, setCurrentTab] = useState(0);
+  const { t } = useTranslation();
+
 
 
   const getIndicatoreColtivazione = (cultivationCode: string) => {
@@ -81,13 +84,13 @@ function App() {
     <>
       <div id="root">
         <div id="root_title" className='bg-white w-full h-30 p-4 text-center'>
-          <h1 className='text-2xl font-bold'>Dashboard azienda agricola Pegaso (WIP)</h1>
+          <h1 className='text-2xl font-bold'>{t("PAGE_TITLE")}</h1>
         </div>
         
         <div id="container" className='h-screen flex flex-col md:flex-wrap'>
           <div id="control_panel" className='flex flex-col h-full w-full md:w-1/4 bg-gray-200'>
             <div id="control_panel_title" className='bg-gray-800 text-white w-full h-30 p-4'>
-              <h1 className='font-bold'>Pannello di controllo</h1>
+              <h1 className='font-bold'>{t("CONTROL_PANEL_TITLE")}</h1>
               <ConnectionState className='text-white text-xs' title='WebSocket Status' isConnected={isConnected} />
             </div>
 
@@ -99,7 +102,7 @@ function App() {
           <div id="dashboard" className='flex flex-col h-full w-full md:w-3/4 bg-gray-100'>
             <div className='flex flex-col'>
               <div id="control_panel_title" className='bg-gray-800 text-white w-full h-30 p-6'>
-                <h1 className='font-bold'>Andamento e Previsioni</h1>
+                <h1 className='font-bold'>{t("CULTIVATION_ANALIYSIS_AND_TREND")}</h1>
               </div>
               
               <div id="contents" className='flex flex-col justify-between h-full p-4'>

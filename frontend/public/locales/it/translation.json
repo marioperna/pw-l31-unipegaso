@@ -1,0 +1,11 @@
+{
+    "PAGE_TITLE": "Dashboard Andamento Raccolti",
+    "CONTROL_PANEL_TITLE": "Pannello di Controllo",
+    "CULTIVATION_ANALIYSIS_AND_TREND": "Analisi Coltivazione",
+    "WEBSOCKET_OPERATIONAL": "Operativo",
+    "WEBSOCKET_NOT_OPERATIONAL": "Non Operativo",
+    "CULTIVATION":"Coltivazione",
+    "TEMPERATURE":"Temperatura",
+    "HUMIDITY_PERCENTAGE":"Umidità (%)",
+    "PRECIPITATION":"Precipitazione"
+}
