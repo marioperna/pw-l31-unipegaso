@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 
 // return the value on the parent component
 interface ControlPanelProps {
-  onCultivationSelectorChange: (cultivationCode: string) => void;
-  onFormValuesChange: (formValues: FormValues) => void;
-  showControlForTab: number;
+  onCultivationSelectorChange?: (cultivationCode: string) => void;
+  onFormValuesChange?: (formValues: FormValues) => void;
+  showControlForTab?: number;
 }
 
 interface FormValues {
@@ -15,11 +15,11 @@ interface FormValues {
 }
 
 function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, showControlForTab }: ControlPanelProps) {
-    const [formValues, setFormValues] = React.useState({} as FormValues);
+    const [formValues, setFormValues] = React.useState({ temperature: '', humidity: '' } as FormValues);
     const { t } = useTranslation();
 
     const getCultivationCode = (cultivationCode: string) => {
-        onCultivationSelectorChange(cultivationCode);
+        onCultivationSelectorChange && onCultivationSelectorChange(cultivationCode);
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,11 +28,10 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, showCon
             ...prevValues,
             [name]: value,
         }));
-        onFormValuesChange(formValues);
     };
 
     useEffect(() => {
-        console.log("formValues è cambiato", formValues);
+        onFormValuesChange && onFormValuesChange(formValues);
     }, [formValues]);
 
     return (

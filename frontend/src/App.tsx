@@ -17,12 +17,6 @@ function App() {
   const [statsData, setStatsData] = useState([] as any[]);
   const { t } = useTranslation();
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
-    setCurrentTab(newValue);
-  };
-
-  const manageControlPanelFormValues = (formValues: any) => { }
-
   const getCultivationIndicators = (cultivationCode: string) => {
     if(!cultivationCode) {
       console.error('CULTIVATION_CODE_IS_REQUIRED');
@@ -47,8 +41,6 @@ function App() {
   }
 
   useEffect(() => {
-    // send a test message to the server
-    console.log('currentCultivation', currentCultivation);
     if(Object.keys(currentCultivation).length > 0){
       socket.emit('LOOKING_CULTIVATION', JSON.stringify(currentCultivation));
     }
@@ -67,6 +59,7 @@ function App() {
     }
 
     function onStatsData(data: any) {
+      console.log("STATS_DATA", data);
       setStatsData(previous => {
         if (previous.length >= MAX_SAMPLES) {
           previous.shift();
@@ -75,10 +68,9 @@ function App() {
       });
     }
 
-    socket.on('STATS_DATA', onStatsData);
-
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
+    socket.on('STATS_DATA', onStatsData);
 
     return () => {
       socket.off('connect', onConnect);
@@ -105,7 +97,6 @@ function App() {
               <ControlPanel 
                 showControlForTab={currentTab} 
                 onCultivationSelectorChange={getCultivationIndicators} 
-                onFormValuesChange={(formValues) => manageControlPanelFormValues(formValues)}
               />
             </div>
           </div>
