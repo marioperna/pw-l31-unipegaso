@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import './App.css';
 import { ConnectionState } from './components/ConnectionState';
 import ControlPanel from './components/ControlPanel';
@@ -6,18 +7,23 @@ import CultivationStats from './components/CultivationStats';
 import DashboardTabs from './components/DashboardTabs';
 import { socket } from './socket';
 import { Cultivation } from './types/cultivation';
-import { useTranslation } from 'react-i18next';
+
+const MAX_SAMPLES = 10;
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
-  const [fooEvents, setFooEvents] = useState([]);
   const [currentCultivation, setCurrentCultivation] = useState({} as Cultivation);
   const [currentTab, setCurrentTab] = useState(0);
+  const [statsData, setStatsData] = useState([] as any[]);
   const { t } = useTranslation();
 
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setCurrentTab(newValue);
+  };
 
+  const manageControlPanelFormValues = (formValues: any) => { }
 
-  const getIndicatoreColtivazione = (cultivationCode: string) => {
+  const getCultivationIndicators = (cultivationCode: string) => {
     if(!cultivationCode) {
       console.error('CULTIVATION_CODE_IS_REQUIRED');
       return;
@@ -50,7 +56,7 @@ function App() {
 
 
   useEffect(() => {
-    getIndicatoreColtivazione('MAIZE');
+    getCultivationIndicators('MAIZE');
 
     function onConnect() {
       setIsConnected(true);
@@ -60,13 +66,14 @@ function App() {
       setIsConnected(false);
     }
 
-    // Uncomment the following function and socket event listener if you need to handle 'foo' events
-    // function onFooEvent(value: any) {
-    //   setFooEvents(previous => [...previous, value]);
-    // }
-
     socket.on('STATS_DATA', (data) => {
-      console.log('STATS_DATA', data)
+      // store in append the data  but limit to 5
+      setStatsData(previous => {
+        if (previous.length >= MAX_SAMPLES) {
+          previous.shift();
+        }
+        return [...previous, data];
+      });
     });
 
     socket.on('connect', onConnect);
@@ -95,7 +102,11 @@ function App() {
             </div>
 
             <div className='p-4'>
-              <ControlPanel showControlForTab={currentTab} onCultivationSelectorChange={getIndicatoreColtivazione} />
+              <ControlPanel 
+                showControlForTab={currentTab} 
+                onCultivationSelectorChange={getCultivationIndicators} 
+                onFormValuesChange={(formValues) => manageControlPanelFormValues(formValues)}
+              />
             </div>
           </div>
 
@@ -112,7 +123,7 @@ function App() {
                 </div>
                 
                 <div id="dashboard_tabs" className='bg-white p-4 mt-4 rounded-md shadow-md'>
-                  <DashboardTabs onTabChange={(ct: number) => setCurrentTab(ct) } />
+                  <DashboardTabs statsData={statsData}  onTabChange={(ct: number) => setCurrentTab(ct) } />
                 </div>
                 {/* end contents */}
               </div>

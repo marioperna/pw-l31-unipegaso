@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import { useTranslation } from 'react-i18next';
 
 // return the value on the parent component
 interface ControlPanelProps {
   onCultivationSelectorChange: (cultivationCode: string) => void;
+  onFormValuesChange: (formValues: FormValues) => void;
   showControlForTab: number;
 }
 
 interface FormValues {
     temperature: string;
     humidity: string;
-    precipitation: string;
 }
 
-function ControlPanel({ onCultivationSelectorChange, showControlForTab }: ControlPanelProps) {
+function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, showControlForTab }: ControlPanelProps) {
     const [formValues, setFormValues] = React.useState({} as FormValues);
     const { t } = useTranslation();
 
@@ -28,11 +28,12 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
             ...prevValues,
             [name]: value,
         }));
+        onFormValuesChange(formValues);
     };
 
-    // useEffect(() => {
-    //     console.log("il tab è cambiato", showControlForTab);
-    // }, [showControlForTab]);
+    useEffect(() => {
+        console.log("formValues è cambiato", formValues);
+    }, [formValues]);
 
     return (
         <FormControl fullWidth>
@@ -77,20 +78,6 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
                         slotProps={{
                             input: {
                                 endAdornment: <InputAdornment position="end">%</InputAdornment>,
-                            },
-                        }}
-                    />
-
-                    <TextField
-                        label={t("PRECIPITATION")}
-                        id="precipitation-field"
-                        name='precipitation'
-                        value={formValues.precipitation}
-                        onChange={handleChange}
-                        type='number'
-                        slotProps={{
-                            input: {
-                                endAdornment: <InputAdornment position="end">mm (l/m²)</InputAdornment>,
                             },
                         }}
                     />

@@ -19,7 +19,7 @@ getOrigin = () => {
 }
 
 const PORT = process.env.PORT || 3000;
-const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 5000;
+const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 2000;
 const IO = new Server(server, {
   cors: {
     origin: getOrigin(),
@@ -31,18 +31,22 @@ const IO = new Server(server, {
 IO.on('connection', (socket) => {
   console.log('a user connected');
 
-  // a client sent a message to server with  "TEST" command
   socket.on(WEBSOCKET_CMD.LOOKING_CULTIVATION, (payload) => {
     const currentCultivation = JSON.parse(payload);
     console.log('currentCultivation:', currentCultivation);
 
-    setInterval(() => {
-      const generatedData = getStatData(currentCultivation);
+    const intervalId = setInterval(() => {
+      const generatedData = getStatData(currentCultivation, {});
       console.log('generatedData:', generatedData);
 
       socket.emit(WEBSOCKET_CMD.STATS_DATA, generatedData);
     }, WEBSOCKET_SEND_INTERVAL);
 
+    // Pulisci l'intervallo quando il client si disconnette
+    socket.on('disconnect', () => {
+      console.log('Il client si è disconnesso');
+      clearInterval(intervalId);
+    });
   });
 });
 

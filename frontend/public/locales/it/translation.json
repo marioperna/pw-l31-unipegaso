@@ -7,5 +7,8 @@
     "CULTIVATION":"Coltivazione",
     "TEMPERATURE":"Temperatura",
     "HUMIDITY_PERCENTAGE":"Umidità (%)",
-    "PRECIPITATION":"Precipitazione"
+    "PRECIPITATION":"Precipitazione",
+    "CLIMATIC_CONDITIONS":"Condizioni Climatiche",
+    "PRODUCTIVE_CONDITIONS":"Condizioni Produttive",
+    "BUSINESS_CONDITIONS": "Condizioni Economiche"
 }

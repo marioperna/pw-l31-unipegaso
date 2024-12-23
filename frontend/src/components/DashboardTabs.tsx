@@ -33,7 +33,7 @@ function a11yProps(index: number) {
   };
 }
 
-function DashboardTabs({ onTabChange }: {onTabChange: any}) {
+function DashboardTabs({ onTabChange, statsData }: { onTabChange: any, statsData: any }) {
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -53,7 +53,22 @@ function DashboardTabs({ onTabChange }: {onTabChange: any}) {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <CustomLineChart />
+        <h1 className='text-2xl'>Temperatura</h1>
+        <CustomLineChart
+          data={statsData}
+          lineDataKey='temperature'
+          xAxisDataKey='date'
+          yAxisDataKey='temperature'
+        />
+
+        <h1 className='text-2xl'>Umidità</h1>
+
+        <CustomLineChart
+          data={statsData}
+          lineDataKey='humidity'
+          xAxisDataKey='date'
+          yAxisDataKey='humidity'
+        />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
       </CustomTabPanel>
