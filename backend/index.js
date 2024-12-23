@@ -4,7 +4,8 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const { WEBSOCKET_CMD } = require('./websocket-cmd');
-const INDICATORI_COLTIVAZIONI = require('./indicatori-coltivazioni');
+const CULTIVATION_INDICATORS = require('./cultivation-indicators');
+const { getStatData } = require('./utilities');
 
 getOrigin = () => {
   if (process.env.NODE_ENV === 'production') {
@@ -30,19 +31,30 @@ const IO = new Server(server, {
 IO.on('connection', (socket) => {
   console.log('a user connected');
 
-  setInterval(() => {
-    socket.emit(WEBSOCKET_CMD.TEMPERATURE, 'Hello from server');
-  }, WEBSOCKET_SEND_INTERVAL);
+  // a client sent a message to server with  "TEST" command
+  socket.on(WEBSOCKET_CMD.LOOKING_CULTIVATION, (payload) => {
+    const currentCultivation = JSON.parse(payload);
+    console.log('currentCultivation:', currentCultivation);
+
+    setInterval(() => {
+      const generatedData = getStatData(currentCultivation);
+      console.log('generatedData:', generatedData);
+
+      socket.emit(WEBSOCKET_CMD.STATS_DATA, generatedData);
+    }, WEBSOCKET_SEND_INTERVAL);
+
+  });
 });
 
+
 // GESTIONE API
-app.get('/api/indicatori-coltivazioni/:codiceColtivazione', (req, res) => {
-  const { codiceColtivazione } = req.params;
-  if(!codiceColtivazione) {
-    return res.status(400).send('codiceColtivazione is required');
+app.get('/api/indicatori-coltivazioni/:cultivationCode', (req, res) => {
+  const { cultivationCode } = req.params;
+  if(!cultivationCode) {
+    return res.status(400).send('cultivationCode is required');
   }
   // send the json
-  return res.json(INDICATORI_COLTIVAZIONI[codiceColtivazione]);
+  return res.json(CULTIVATION_INDICATORS[cultivationCode]);
 });
 
 server.listen(PORT, () => {
