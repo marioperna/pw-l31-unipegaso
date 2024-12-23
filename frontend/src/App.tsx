@@ -66,24 +66,24 @@ function App() {
       setIsConnected(false);
     }
 
-    socket.on('STATS_DATA', (data) => {
-      // store in append the data  but limit to 5
+    function onStatsData(data: any) {
       setStatsData(previous => {
         if (previous.length >= MAX_SAMPLES) {
           previous.shift();
         }
         return [...previous, data];
       });
-    });
+    }
+
+    socket.on('STATS_DATA', onStatsData);
 
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
-    // socket.on('foo', onFooEvent);
 
     return () => {
       socket.off('connect', onConnect);
       socket.off('disconnect', onDisconnect);
-      // socket.off('foo', onFooEvent);
+      socket.off('STATS_DATA', onStatsData);
     };
   }, []);
 
