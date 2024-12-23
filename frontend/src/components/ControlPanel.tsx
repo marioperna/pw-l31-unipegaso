@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 // return the value on the parent component
 interface ControlPanelProps {
@@ -10,11 +11,12 @@ interface ControlPanelProps {
 interface FormValues {
     temperature: string;
     humidity: string;
-    water: string;
+    precipitation: string;
 }
 
 function ControlPanel({ onCultivationSelectorChange, showControlForTab }: ControlPanelProps) {
     const [formValues, setFormValues] = React.useState({} as FormValues);
+    const { t } = useTranslation();
 
     const getCultivationCode = (cultivationCode: string) => {
         onCultivationSelectorChange(cultivationCode);
@@ -35,11 +37,11 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
     return (
         <FormControl fullWidth>
             <Box display="flex" flexDirection="column" gap={2}>
-                <InputLabel id="cereal">Cereale</InputLabel>
+                <InputLabel id="cultivation">{t("CULTIVATION")}</InputLabel>
                 <Select
-                    labelId="cereal"
-                    id="cereal-dropdown"
-                    label="Cerale"
+                    labelId="cultivation"
+                    id="cultivation-dropdown"
+                    label={t("CULTIVATION")}
                     defaultValue={"MAIZE"}
                     onChange={(e) => getCultivationCode(e.target.value)}
                 >
@@ -52,7 +54,7 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
                 {/* TAB 0 - COND. Climatiche */}
                 {showControlForTab === 0 && <>
                     <TextField
-                        label="Temperatura"
+                        label={t("TEMPERATURE")}
                         id="temperature-field"
                         name='temperature'
                         onChange={handleChange}
@@ -66,7 +68,7 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
                     />
 
                     <TextField
-                        label="Perc. Umidità"
+                        label={t("HUMIDITY_PERCENTAGE")}
                         id="humidity-field"
                         name='humidity'
                         onChange={handleChange}
@@ -80,10 +82,10 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
                     />
 
                     <TextField
-                        label="Q.tà Acqua"
-                        id="water-field"
-                        name='water'
-                        value={formValues.water}
+                        label={t("PRECIPITATION")}
+                        id="precipitation-field"
+                        name='precipitation'
+                        value={formValues.precipitation}
                         onChange={handleChange}
                         type='number'
                         slotProps={{
