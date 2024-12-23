@@ -40,13 +40,13 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
                     labelId="cereal"
                     id="cereal-dropdown"
                     label="Cerale"
-                    defaultValue={"MAIS"}
+                    defaultValue={"MAIZE"}
                     onChange={(e) => getCultivationCode(e.target.value)}
                 >
-                    <MenuItem value={"MAIS"}>Mais (Zea mays)</MenuItem>
-                    <MenuItem value={"SEGALE"}>Segale (Secale cereale)</MenuItem>
-                    <MenuItem value={"GRANO_TENERO"}>Grano tenero (Triticum aestivum)</MenuItem>
-                    <MenuItem value={"ORZO"}>Orzo (Hordeum vulgare)</MenuItem>
+                    <MenuItem value={"MAIZE"}>Mais (Zea mays)</MenuItem>
+                    <MenuItem value={"RYE"}>Segale (Secale cereale)</MenuItem>
+                    <MenuItem value={"SOFT_WHEAT"}>Grano tenero (Triticum aestivum)</MenuItem>
+                    <MenuItem value={"BARLEY"}>Orzo (Hordeum vulgare)</MenuItem>
                 </Select>
 
                 {/* TAB 0 - COND. Climatiche */}

@@ -1,34 +1,34 @@
 import { Cultivation } from "../types/cultivation";
+import { DateTime } from "luxon";
 
 function CultivationStats({ currentCultivation }: { currentCultivation: Cultivation }) {
   return (
     <div id="stats" className='flex flex-col md:flex-row gap-4'>
-      {/* temperatura */}
+      {/* Temperature */}
       <div id="temperature_card" className='w-full shadow-md rounded-md font-bold p-4 bg-white'>
-        <h2 className='text-xl'>Temperatura</h2>
-        <p>{currentCultivation?.temperaturaOttimale?.min} - {currentCultivation?.temperaturaOttimale?.max} {currentCultivation?.temperaturaOttimale?.unitaMisura}</p>
+        <h2 className='text-xl'>Temperature</h2>
+        <p>{currentCultivation?.optimalTemperature?.min} - {currentCultivation?.optimalTemperature?.max} {currentCultivation?.optimalTemperature?.unitMeasure}</p>
       </div>
 
-      {/* durata */}
+      {/* Period */}
       <div id="period_card" className='w-full shadow-md rounded-md font-bold p-4 bg-white'>
         <h2 className='text-xl'>Periodo</h2>
-        <p>{currentCultivation?.periodoColtivazione?.inizio} - {currentCultivation?.periodoColtivazione?.fine}</p>
-        <p className='text-sm'>({currentCultivation?.durata?.min} - {currentCultivation?.durata?.max} {currentCultivation?.durata?.unitaMisura})</p>
+        <p>{DateTime.fromObject({ month: currentCultivation?.cultivationPeriod?.start }).monthLong} - {DateTime.fromObject({ month: currentCultivation?.cultivationPeriod?.end }).monthLong}</p>
+        <p className='text-sm'>({currentCultivation?.duration?.min} - {currentCultivation?.duration?.max} {currentCultivation?.duration?.unitMeasure})</p>
       </div>
 
-      {/* Umidità suolo */}
+      {/* Soil Humidity */}
       <div id="humidity_card" className='w-full shadow-md rounded-md font-bold p-4 bg-white'>
-        <h2 className='text-xl'>Umidità Suolo</h2>
-        <p>{currentCultivation?.umiditaSuolo?.min} - {currentCultivation?.umiditaSuolo?.max} {currentCultivation?.umiditaSuolo?.unitaMisura}</p>
+        <h2 className='text-xl'>Umidità</h2>
+        <p>{currentCultivation?.soilHumidity?.min} - {currentCultivation?.soilHumidity?.max} {currentCultivation?.soilHumidity?.unitMeasure}</p>
       </div>
 
-      {/* Quantità di acqua */}
+      {/* Water Quantity */}
       <div id="water_card" className='w-full shadow-md rounded-md font-bold p-4 bg-white'>
         <h2 className='text-xl'>Quantità Acqua</h2>
-        <p>{currentCultivation?.quantitaAcqua?.min} - {currentCultivation?.quantitaAcqua?.max} {currentCultivation?.quantitaAcqua?.unitaMisura}</p>
+        <p>{currentCultivation?.waterQuantity?.min} - {currentCultivation?.waterQuantity?.max} {currentCultivation?.waterQuantity?.unitMeasure}</p>
       </div>
     </div>
-
   );
 }
 

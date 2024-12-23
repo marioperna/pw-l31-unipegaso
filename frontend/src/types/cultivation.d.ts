@@ -1,37 +1,37 @@
 export type Cultivation = {
-    nome: string;
-    descrizione: string;
-    periodoColtivazione: {
-        inizio: string;
-        fine: string;
+    name: string;
+    description: string;
+    cultivationPeriod: {
+        start: number;
+        end: number;
     },
-    periodoRaccolto: {
-        inizio: string;
-        fine: string;
+    harvestPeriod: {
+        start: number;
+        end: number;
     },
-    temperaturaOttimale: {
+    optimalTemperature: {
         min: number;
         max: number;
-        unitaMisura: string;
+        unitMeasure: string;
     }
-    durata: {
+    duration: {
         min: number;
         max: number;
-        unitaMisura: string;
+        unitMeasure: string;
     };
-    quantitaAcqua: {
+    waterQuantity: {
         min: number;
         max: number;
-        unitaMisura: string;
+        unitMeasure: string;
     },
-    umiditaSuolo: {
+    soilHumidity: {
         min: number;
         max: number;
-        unitaMisura: string;
+        unitMeasure: string;
     },
-    percentualeSole: {
+    sunlightPercentage: {
         min: number;
         max: number;
-        unitaMisura: string;
+        unitMeasure: string;
     }
-} 
+}

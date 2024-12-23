@@ -14,13 +14,13 @@ function App() {
   const [currentTab, setCurrentTab] = useState(0);
 
 
-  const getIndicatoreColtivazione = (codiceColtivazione: string) => {
-    if(!codiceColtivazione) {
+  const getIndicatoreColtivazione = (cultivationCode: string) => {
+    if(!cultivationCode) {
       console.error('CULTIVATION_CODE_IS_REQUIRED');
       return;
     }
 
-    fetch(`/api/indicatori-coltivazioni/${codiceColtivazione.toUpperCase()}`) // Replace with your API endpoint
+    fetch(`/api/indicatori-coltivazioni/${cultivationCode.toUpperCase()}`) // Replace with your API endpoint
     .then((response) => {
       // Verifica se la risposta è OK (status 200-299)
       if (!response.ok) {
@@ -38,7 +38,16 @@ function App() {
   }
 
   useEffect(() => {
-    getIndicatoreColtivazione('MAIS');
+    // send a test message to the server
+    console.log('currentCultivation', currentCultivation);
+    if(Object.keys(currentCultivation).length > 0){
+      socket.emit('LOOKING_CULTIVATION', JSON.stringify(currentCultivation));
+    }
+  }, [currentCultivation]);
+
+
+  useEffect(() => {
+    getIndicatoreColtivazione('MAIZE');
 
     function onConnect() {
       setIsConnected(true);
@@ -53,8 +62,8 @@ function App() {
     //   setFooEvents(previous => [...previous, value]);
     // }
 
-    socket.on('GET_DASHBOARD_TEMPERATURE', (data) => {
-      console.log('temperature', data)
+    socket.on('STATS_DATA', (data) => {
+      console.log('STATS_DATA', data)
     });
 
     socket.on('connect', onConnect);
