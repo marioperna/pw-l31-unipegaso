@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 
 // return the value on the parent component
@@ -6,20 +7,39 @@ interface ControlPanelProps {
   showControlForTab: number;
 }
 
+interface FormValues {
+    temperature: string;
+    humidity: string;
+    water: string;
+}
+
 function ControlPanel({ onCultivationSelectorChange, showControlForTab }: ControlPanelProps) {
+    const [formValues, setFormValues] = React.useState({} as FormValues);
 
     const getCultivationCode = (cultivationCode: string) => {
         onCultivationSelectorChange(cultivationCode);
     }
 
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormValues((prevValues) => ({
+            ...prevValues,
+            [name]: value,
+        }));
+    };
+
+    // useEffect(() => {
+    //     console.log("il tab è cambiato", showControlForTab);
+    // }, [showControlForTab]);
+
     return (
         <FormControl fullWidth>
             <Box display="flex" flexDirection="column" gap={2}>
-                <InputLabel id="label-raccolto">Raccolto</InputLabel>
+                <InputLabel id="cereal">Cereale</InputLabel>
                 <Select
-                    labelId="label-raccolto"
-                    id="dropdown-raccolto"
-                    label="Raccolto"
+                    labelId="cereal"
+                    id="cereal-dropdown"
+                    label="Cerale"
                     defaultValue={"MAIS"}
                     onChange={(e) => getCultivationCode(e.target.value)}
                 >
@@ -33,7 +53,10 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
                 {showControlForTab === 0 && <>
                     <TextField
                         label="Temperatura"
-                        id="controller-temperatura"
+                        id="temperature-field"
+                        name='temperature'
+                        onChange={handleChange}
+                        value={formValues.temperature}
                         type='number'
                         slotProps={{
                             input: {
@@ -44,7 +67,10 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
 
                     <TextField
                         label="Perc. Umidità"
-                        id="controller-umidita"
+                        id="humidity-field"
+                        name='humidity'
+                        onChange={handleChange}
+                        value={formValues.humidity}
                         type='number'
                         slotProps={{
                             input: {
@@ -55,7 +81,10 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
 
                     <TextField
                         label="Q.tà Acqua"
-                        id="controller-acqua"
+                        id="water-field"
+                        name='water'
+                        value={formValues.water}
+                        onChange={handleChange}
                         type='number'
                         slotProps={{
                             input: {
@@ -67,16 +96,11 @@ function ControlPanel({ onCultivationSelectorChange, showControlForTab }: Contro
 
 
                 {showControlForTab === 1 && <>
-                    <TextField
-                        label="Q.tà Fertilizzante"
-                        id="controller-fertilizzante"
-                        type='number'
-                        slotProps={{
-                            input: {
-                                endAdornment: <InputAdornment position="end">kg/m²</InputAdornment>,
-                            },
-                        }}
-                    />
+                    {/* put here other fields */}
+                </>}
+
+                {showControlForTab === 2 && <>
+                    {/* put here other fields */}
                 </>}
                
             </Box>
