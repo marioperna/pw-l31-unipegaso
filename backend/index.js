@@ -19,7 +19,7 @@ getOrigin = () => {
 }
 
 const PORT = process.env.PORT || 3000;
-const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 2000;
+const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 4000;
 const IO = new Server(server, {
   cors: {
     origin: getOrigin(),
@@ -33,10 +33,9 @@ IO.on('connection', (socket) => {
 
   socket.on(WEBSOCKET_CMD.LOOKING_CULTIVATION, (payload) => {
     const currentCultivation = JSON.parse(payload);
-    console.log('currentCultivation:', currentCultivation);
 
     const intervalId = setInterval(() => {
-      const generatedData = getStatData(currentCultivation, {});
+      const generatedData = getStatData(currentCultivation);
       console.log('generatedData:', generatedData);
 
       socket.emit(WEBSOCKET_CMD.STATS_DATA, generatedData);
@@ -48,6 +47,7 @@ IO.on('connection', (socket) => {
       clearInterval(intervalId);
     });
   });
+
 });
 
 

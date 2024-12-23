@@ -13,7 +13,7 @@ function generateRealisticData(min, max) {
 
 
 
-function getStatData(currentCultivation, overrideData = {}) {
+function getStatData(currentCultivation) {
     if(Object.keys(currentCultivation).length === 0) {
         console.log('currentCultivation is empty');
         return;
