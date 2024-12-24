@@ -168,7 +168,7 @@ function App() {
               <div id="contents" className='flex flex-col justify-between h-full p-4'>
                 {/* contents here */}
                 <div id="cultivation_stats">
-                  <CultivationStats currentCultivation={currentCultivation} />
+                  <CultivationStats currentCultivation={currentCultivation} comparingData={climaticData} />
                 </div>
 
                 <div id="dashboard_tabs" className='bg-white p-4 mt-4 rounded-md shadow-md'>

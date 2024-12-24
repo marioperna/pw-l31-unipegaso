@@ -19,7 +19,7 @@ getOrigin = () => {
 }
 
 const PORT = process.env.PORT || 3000;
-const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 5000;
+const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 2000;
 const IO = new Server(server, {
   cors: {
     origin: getOrigin(),
