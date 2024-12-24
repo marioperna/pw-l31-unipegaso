@@ -6,11 +6,14 @@
     "WEBSOCKET_NOT_OPERATIONAL": "Non Operativo",
     "CULTIVATION":"Coltivazione",
     "TEMPERATURE":"Temperatura",
-    "HUMIDITY_PERCENTAGE":"Umidità (%)",
+    "HUMIDITY_PERCENTAGE":"Umidità",
     "PRECIPITATION":"Precipitazione",
     "CLIMATIC_CONDITIONS":"Condizioni Climatiche",
     "PRODUCTIVE_CONDITIONS":"Condizioni Produttive",
     "BUSINESS_CONDITIONS": "Condizioni Economiche",
     "DISCONNECT": "Disconnesso",
-    "WINDBLOW_PERCENTAGE": "Vento (%)"
+    "WINDBLOW_PERCENTAGE": "Vento",
+    "PERIOD":"Periodo",
+    "HUMIDITY":"Umidità",
+    "WINDBLOW":"Vento"
 }
