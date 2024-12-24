@@ -19,7 +19,7 @@ getOrigin = () => {
 }
 
 const PORT = process.env.PORT || 3000;
-const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 4000;
+const WEBSOCKET_SEND_INTERVAL = process.env.WEBSOCKET_SEND_INTERVAL || 5000;
 const IO = new Server(server, {
   cors: {
     origin: getOrigin(),
@@ -29,12 +29,19 @@ const IO = new Server(server, {
 
 // GESTIONE WEBSOCKET
 IO.on('connection', (socket) => {
-  console.log('a user connected');
+  console.log('User connected to the socket');
+  let intervalId = null;
 
   socket.on(WEBSOCKET_CMD.LOOKING_CULTIVATION, (payload) => {
     const currentCultivation = JSON.parse(payload);
 
-    const intervalId = setInterval(() => {
+    // pulisco l'intervallo ogni volta che cambia il selettore della coltivazione
+    if(intervalId){
+      console.log("cleaning interval");
+      clearInterval(intervalId);
+    }
+
+    intervalId = setInterval(() => {
       const generatedData = getStatData(currentCultivation);
       console.log('generatedData:', generatedData);
 
