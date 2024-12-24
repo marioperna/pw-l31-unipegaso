@@ -38,7 +38,7 @@ IO.on('connection', (socket) => {
       const generatedData = getStatData(currentCultivation);
       console.log('generatedData:', generatedData);
 
-      socket.emit(WEBSOCKET_CMD.STATS_DATA, generatedData);
+      socket.emit(WEBSOCKET_CMD.GET_CLIMATIC_DATA, generatedData);
     }, WEBSOCKET_SEND_INTERVAL);
 
     // Pulisci l'intervallo quando il client si disconnette
