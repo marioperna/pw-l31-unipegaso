@@ -9,24 +9,24 @@ import { socket } from './socket';
 import { ClimaticData, CustomIndicatorProps } from './types/common';
 import { Cultivation } from './types/cultivation';
 import { extractFromLocalStorage, removeLocalStorage, saveToLocalStorage } from './utilities';
-
-const MAX_SAMPLES = 10;
+import { MAX_SAMPLES } from './app.env';
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [currentCultivation, setCurrentCultivation] = useState({} as Cultivation);
   const [currentTab, setCurrentTab] = useState(0);
-  const [climaticData, setClimaticData] = useState([] as any[]);
+  const [climaticData, setClimaticData] = useState([] as ClimaticData[]);
 
   const { t } = useTranslation();
 
+  // Give info about the cultivation. 
   const getCultivationIndicators = (cultivationCode: string) => {
     if (!cultivationCode) {
       console.error('CULTIVATION_CODE_IS_REQUIRED');
       return;
     }
 
-    fetch(`/api/indicatori-coltivazioni/${cultivationCode.toUpperCase()}`) // Replace with your API endpoint
+    fetch(`/api/indicatori-coltivazioni/${cultivationCode.toUpperCase()}`)
       .then((response) => {
         // Verifica se la risposta è OK (status 200-299)
         if (!response.ok) {
@@ -41,6 +41,17 @@ function App() {
         console.error('There was a problem with the fetch operation:', error);
       });
 
+  }
+
+
+  const resetGraphData = () => {
+    console.log("Resetting graph data");
+    setClimaticData([]);
+  }
+
+  const manageCultivationChange = (cultivationCode: string) => {
+    resetGraphData();
+    getCultivationIndicators(cultivationCode);
   }
 
   useEffect(() => {
@@ -75,8 +86,7 @@ function App() {
 
   useEffect(() => {
     init()
-
-    getCultivationIndicators('MAIZE');
+    getCultivationIndicators('MAIZE'); // start with MAIZ preselected
 
     function onConnect() {
       setIsConnected(true);
@@ -142,7 +152,7 @@ function App() {
             <div className='p-4'>
               <ControlPanel
                 showControlForTab={currentTab}
-                onCultivationSelectorChange={getCultivationIndicators}
+                onCultivationSelectorChange={manageCultivationChange}
                 onFormValuesChange={(ci) => { manageCustomIndicators(ci) }}
                 onDisconnect={() => dropWebsocketConnection()}
               />

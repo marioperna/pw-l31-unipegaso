@@ -75,7 +75,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         type='number'
                         slotProps={{
                             input: {
-                                endAdornment: <InputAdornment position="end">°C</InputAdornment>,
+                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
                             },
                         }}
                     />
@@ -90,7 +90,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         type='number'
                         slotProps={{
                             input: {
-                                endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
                             },
                         }}
                     />
@@ -105,7 +105,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         type='number'
                         slotProps={{
                             input: {
-                                endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
                             },
                         }}
                     />
