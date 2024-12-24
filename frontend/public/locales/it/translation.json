@@ -10,5 +10,7 @@
     "PRECIPITATION":"Precipitazione",
     "CLIMATIC_CONDITIONS":"Condizioni Climatiche",
     "PRODUCTIVE_CONDITIONS":"Condizioni Produttive",
-    "BUSINESS_CONDITIONS": "Condizioni Economiche"
+    "BUSINESS_CONDITIONS": "Condizioni Economiche",
+    "DISCONNECT": "Disconnesso",
+    "WINDBLOW_PERCENTAGE": "Vento (%)"
 }

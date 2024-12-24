@@ -1,38 +1,51 @@
-import React, { useEffect } from 'react';
-import { Box, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Box, Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { CustomIndicatorProps } from '../types/common';
 
 // return the value on the parent component
 interface ControlPanelProps {
-  onCultivationSelectorChange?: (cultivationCode: string) => void;
-  onFormValuesChange?: (formValues: FormValues) => void;
-  showControlForTab?: number;
+    onCultivationSelectorChange?: (cultivationCode: string) => void;
+    onFormValuesChange?: (customIndicators: CustomIndicatorProps) => void;
+    onDisconnect?: () => void;
+    showControlForTab?: number;
 }
 
-interface FormValues {
-    temperature: string;
-    humidity: string;
-}
 
-function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, showControlForTab }: ControlPanelProps) {
-    const [formValues, setFormValues] = React.useState({ temperature: '', humidity: '' } as FormValues);
+
+function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisconnect, showControlForTab }: ControlPanelProps) {
     const { t } = useTranslation();
 
+    // EVENTI
     const getCultivationCode = (cultivationCode: string) => {
         onCultivationSelectorChange && onCultivationSelectorChange(cultivationCode);
     }
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormValues((prevValues) => ({
-            ...prevValues,
-            [name]: value,
-        }));
+
+        const payload = {} as CustomIndicatorProps;
+
+        switch (name) {
+            case 'customTemperature':
+                payload.customTemperature = parseFloat(value);
+                break;
+            case 'customHumidity':
+                payload.customHumidity = parseFloat(value);
+                break;
+            case 'customWindblow':
+                payload.customWindblow = parseFloat(value);
+                break;
+            default:
+                break;
+        }
+
+        onFormValuesChange && onFormValuesChange(payload);
     };
 
-    useEffect(() => {
-        onFormValuesChange && onFormValuesChange(formValues);
-    }, [formValues]);
+    const disconnect = () => {
+        onDisconnect && onDisconnect();
+    }
 
     return (
         <FormControl fullWidth>
@@ -55,10 +68,10 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, showCon
                 {showControlForTab === 0 && <>
                     <TextField
                         label={t("TEMPERATURE")}
-                        id="temperature-field"
-                        name='temperature'
+                        id="customTemperature-field"
+                        name='customTemperature'
                         onChange={handleChange}
-                        value={formValues.temperature}
+                        //value={formValues.customTemperature}
                         type='number'
                         slotProps={{
                             input: {
@@ -69,10 +82,26 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, showCon
 
                     <TextField
                         label={t("HUMIDITY_PERCENTAGE")}
-                        id="humidity-field"
-                        name='humidity'
+                        id="customHumidity-field"
+                        name='customHumidity'
+                        // change only when the value is fully inserted
                         onChange={handleChange}
-                        value={formValues.humidity}
+                        //value={formValues.customHumidity}
+                        type='number'
+                        slotProps={{
+                            input: {
+                                endAdornment: <InputAdornment position="end">%</InputAdornment>,
+                            },
+                        }}
+                    />
+
+                    <TextField
+                        label={t("WINDBLOW_PERCENTAGE")}
+                        id="customWindblow-field"
+                        name='customWindblow'
+                        // change only when the value is fully inserted
+                        onChange={handleChange}
+                        //value={formValues.customHumidity}
                         type='number'
                         slotProps={{
                             input: {
@@ -90,7 +119,8 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, showCon
                 {showControlForTab === 2 && <>
                     {/* put here other fields */}
                 </>}
-               
+
+                <Button variant="contained" onClick={disconnect}>{t("DISCONNECT")}</Button>
             </Box>
         </FormControl>
     );
