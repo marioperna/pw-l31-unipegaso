@@ -8,7 +8,7 @@ function generateRealisticData(min, max) {
     const delta = avg * 0.06;
     const randomValue = Math.random() * 2 * delta - delta;
     const result = avg + randomValue;
-    return result.toFixed(2);
+    return Math.round(result * 100) / 100;
 }
 
 
