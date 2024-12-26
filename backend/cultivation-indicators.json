@@ -3,7 +3,7 @@
         "name": "Maize (Zea mays)",
         "description": "Maize",
         "cultivationPeriod": {
-            "start": 4, 
+            "start": 4,
             "end": 9
         },
         "optimalTemperature": {
@@ -12,7 +12,7 @@
             "unitMeasure": "°C"
         },
         "harvestPeriod": {
-            "start": 9, 
+            "start": 9,
             "end": 11
         },
         "duration": {
@@ -47,7 +47,7 @@
             "productUnitMeasure": "€/kg",
             "waterPrice": 0.004,
             "waterUnitMeasure": "l/kg",
-            "energyPrice":  0.19,
+            "energyPrice": 0.19,
             "energyUnitMeasure": "kWh/kg"
         }
     },
@@ -55,7 +55,7 @@
         "name": "Rye (Secale cereale)",
         "description": "",
         "cultivationPeriod": {
-            "start": 10, 
+            "start": 10,
             "end": 11
         },
         "optimalTemperature": {
@@ -64,8 +64,8 @@
             "unitMeasure": "°C"
         },
         "harvestPeriod": {
-            "start": 6, 
-            "end": 7 
+            "start": 6,
+            "end": 7
         },
         "duration": {
             "min": 180,
@@ -86,14 +86,29 @@
             "min": 60,
             "max": 70,
             "unitMeasure": "%"
+        },
+        "productionFixedValues": {
+            "maxYearlyAmountOfHarvestedKg": 40000,
+            "pricePerKg": 0.6,
+            "waterConsumptionPerKg": 600,
+            "energyConsumptionPerKg": 1.2
+        },
+        "businessInfo": {
+            "productCost": 0.35,
+            "productPrice": 2.50,
+            "productUnitMeasure": "€/kg",
+            "waterPrice": 0.004,
+            "waterUnitMeasure": "l/kg",
+            "energyPrice": 0.19,
+            "energyUnitMeasure": "kWh/kg"
         }
     },
     "SOFT_WHEAT": {
         "name": "Soft wheat (Triticum aestivum)",
         "description": "",
         "cultivationPeriod": {
-            "start": 10, 
-            "end": 11 
+            "start": 10,
+            "end": 11
         },
         "optimalTemperature": {
             "min": 15,
@@ -123,17 +138,32 @@
             "min": 70,
             "max": 80,
             "unitMeasure": "%"
+        },
+        "productionFixedValues": {
+            "maxYearlyAmountOfHarvestedKg": 45000,
+            "pricePerKg": 0.7,
+            "waterConsumptionPerKg": 600,
+            "energyConsumptionPerKg": 1.2
+        },
+        "businessInfo": {
+            "productCost": 0.45,
+            "productPrice": 2.00,
+            "productUnitMeasure": "€/kg",
+            "waterPrice": 0.004,
+            "waterUnitMeasure": "l/kg",
+            "energyPrice": 0.19,
+            "energyUnitMeasure": "kWh/kg"
         }
     },
     "BARLEY": {
         "name": "Barley (Hordeum vulgare)",
         "description": "",
         "cultivationPeriod": {
-            "start": 3, 
+            "start": 3,
             "end": 4
         },
         "harvestPeriod": {
-            "start": 7, 
+            "start": 7,
             "end": 7
         },
         "optimalTemperature": {
@@ -160,6 +190,21 @@
             "min": 65,
             "max": 75,
             "unitMeasure": "%"
+        },
+        "productionFixedValues": {
+            "maxYearlyAmountOfHarvestedKg": 40000,
+            "pricePerKg": 0.6,
+            "waterConsumptionPerKg": 600,
+            "energyConsumptionPerKg": 1.2
+        },
+        "businessInfo": {
+            "productCost": 0.35,
+            "productPrice": 2.50,
+            "productUnitMeasure": "€/kg",
+            "waterPrice": 0.004,
+            "waterUnitMeasure": "l/kg",
+            "energyPrice": 0.19,
+            "energyUnitMeasure": "kWh/kg"
         }
     }
 }
