@@ -19,5 +19,11 @@
     "QUANTITY_PRODUCED":"Quantità Prodotta",
     "WATER_CONSUMED":"Acqua Consumata",
     "ENERGY_CONSUMED":"Energia Consumata",
-    "PRODUCT_PRICE":"Prezzo Prodotto"
+    "PRODUCT_PRICE":"Prezzo Prodotto",
+    "MAIS_CULTIVATION": "Mais (Zea mays)",
+    "RYE_CULTIVATION":"Segale (Secale cereale)",
+    "SOFT_WHEAT_CULTIVATION":"Grano tenero (Triticum aestivum)",
+    "BARLEY_CULTIVATION":"Orzo (Hordeum vulgare)",
+    "WATER_PRICE": "Prezzo Acqua",
+    "ENERGY_PRICE": "Prezzo Energia"
 }

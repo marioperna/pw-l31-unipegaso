@@ -1,29 +1,30 @@
-import { Box, Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustomIndicatorProps } from '../types/common';
+import { Box, Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { DEFAULT_CULTIVATION_TYPE } from '../app.env';
 
-// return the value on the parent component
 interface ControlPanelProps {
     onCultivationSelectorChange?: (cultivationCode: string) => void;
     onFormValuesChange?: (customIndicators: CustomIndicatorProps) => void;
+    onReset?: () => void;
     onDisconnect?: () => void;
     showControlForTab?: number;
 }
 
-
-
-function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisconnect, showControlForTab }: ControlPanelProps) {
+function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onReset, onDisconnect, showControlForTab }: ControlPanelProps) {
     const { t } = useTranslation();
 
-    // EVENTI
     const getCultivationCode = (cultivationCode: string) => {
         onCultivationSelectorChange && onCultivationSelectorChange(cultivationCode);
     }
 
+    const resetDashboard = () => {
+        onReset && onReset();
+    }
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-
         const payload = {} as CustomIndicatorProps;
 
         switch (name) {
@@ -61,10 +62,10 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                     defaultValue={"MAIZE"}
                     onChange={(e) => getCultivationCode(e.target.value)}
                 >
-                    <MenuItem value={"MAIZE"}>Mais (Zea mays)</MenuItem>
-                    <MenuItem value={"RYE"}>Segale (Secale cereale)</MenuItem>
-                    <MenuItem value={"SOFT_WHEAT"}>Grano tenero (Triticum aestivum)</MenuItem>
-                    <MenuItem value={"BARLEY"}>Orzo (Hordeum vulgare)</MenuItem>
+                    <MenuItem value={"MAIZE"}>{t("MAIS_CULTIVATION")}</MenuItem>
+                    <MenuItem value={"RYE"}>{t("RYE_CULTIVATION")}</MenuItem>
+                    <MenuItem value={"SOFT_WHEAT"}>{t("SOFT_WHEAT_CULTIVATION")}</MenuItem>
+                    <MenuItem value={"BARLEY"}>{t("BARLEY_CULTIVATION")}</MenuItem>
                 </Select>
 
                 {/* TAB 0 - COND. Climatiche */}
@@ -74,7 +75,6 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         id="customTemperature-field"
                         name='customTemperature'
                         onChange={handleChange}
-                        //value={formValues.customTemperature}
                         type='number'
                         slotProps={{
                             input: {
@@ -87,9 +87,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         label={t("HUMIDITY_PERCENTAGE")}
                         id="customHumidity-field"
                         name='customHumidity'
-                        // change only when the value is fully inserted
                         onChange={handleChange}
-                        //value={formValues.customHumidity}
                         type='number'
                         slotProps={{
                             input: {
@@ -102,9 +100,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         label={t("WINDBLOW_PERCENTAGE")}
                         id="customWindblow-field"
                         name='customWindblow'
-                        // change only when the value is fully inserted
                         onChange={handleChange}
-                        //value={formValues.customHumidity}
                         type='number'
                         slotProps={{
                             input: {
@@ -115,17 +111,13 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                 </>}
 
 
-                {showControlForTab === 1 && <>
-                    {/* put here other fields */}
-                </>}
+                {showControlForTab === 1 && <> </>}
 
                 {showControlForTab === 2 && <>
-                    {/* put here other fields */}
                     <TextField
                         label={t("PRODUCT_PRICE")}
                         id="customProductPrice-field"
                         name='customProductPrice'
-                        // change only when the value is fully inserted
                         onChange={handleChange}
                         //value={formValues.customHumidity}
                         type='number'
@@ -139,9 +131,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         label={t("WATER_PRICE")}
                         id="customWaterPrice-field"
                         name='customWaterPrice'
-                        // change only when the value is fully inserted
                         onChange={handleChange}
-                        //value={formValues.customHumidity}
                         type='number'
                         slotProps={{
                             input: {
@@ -153,9 +143,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         label={t("ENERGY_PRICE")}
                         id="customEnergyPrice-field"
                         name='customEnergyPrice'
-                        // change only when the value is fully inserted
                         onChange={handleChange}
-                        //value={formValues.customHumidity}
                         type='number'
                         slotProps={{
                             input: {
@@ -164,7 +152,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
                         }}
                     />
                 </>}
-
+                <Button variant="contained" onClick={resetDashboard}>{t("RESET")}</Button>
                 <Button variant="contained" onClick={disconnect}>{t("DISCONNECT")}</Button>
             </Box>
         </FormControl>

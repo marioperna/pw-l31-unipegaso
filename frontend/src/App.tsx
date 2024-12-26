@@ -43,15 +43,12 @@ function App() {
       });
   }
 
-  const resetGraphData = () => {
+  const manageCultivationChange = (cultivationCode: string) => {
     setClimaticData([]);
     setProductionData({} as ProductionData);
     setBusinessData({} as BusinessData);
     removeLocalStorage('customIndicators'); // remove all exsisting filters from local storage
-  }
 
-  const manageCultivationChange = (cultivationCode: string) => {
-    resetGraphData();
     getCultivationIndicators(cultivationCode);
   }
 
@@ -62,10 +59,20 @@ function App() {
 
   const init = () => {
     removeLocalStorage('customIndicators'); // remove all exsisting filters from local storage
+    getCultivationIndicators(DEFAULT_CULTIVATION_TYPE);
+  }
+
+  const resetDashboard = () => {
+    setCurrentTab(0);
+    setClimaticData([]);
+    setProductionData({} as ProductionData);
+    setBusinessData({} as BusinessData);
+    init();
   }
 
   const manageCustomIndicators = (customIndicators: CustomIndicatorProps) => {
     let existingCustomIndicators = extractFromLocalStorage('customIndicators') as CustomIndicatorProps;
+
     if (!existingCustomIndicators) { return; }
 
     // replacing null values with 0
@@ -85,8 +92,7 @@ function App() {
   }, [currentCultivation]);
 
   useEffect(() => {
-    init()
-    getCultivationIndicators(DEFAULT_CULTIVATION_TYPE); // Start with cultivation preselected
+    init();
 
     /** 
      * START MANAGING WEBSOCKET EVENTS
@@ -188,6 +194,7 @@ function App() {
                 onCultivationSelectorChange={manageCultivationChange}
                 onFormValuesChange={(ci) => { manageCustomIndicators(ci) }}
                 onDisconnect={() => dropWebsocketConnection()}
+                onReset={() => { resetDashboard() }}
               />
             </div>
           </div>

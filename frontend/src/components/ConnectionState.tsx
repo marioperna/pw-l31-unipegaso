@@ -1,7 +1,8 @@
 import { useTranslation } from "react-i18next";
 
 export function ConnectionState({ isConnected, title, className }: { isConnected: boolean, title?: string, className?: string }) {
-  const { t } = useTranslation(); // not passing any namespace will use the defaultNS (by default set to 'translation')
+  const { t } = useTranslation();
+  
   return (
     <div className="flex">
       {title && <div className={"mr-2" + ' ' +className}>{title}</div>}
