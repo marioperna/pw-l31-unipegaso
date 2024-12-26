@@ -14,7 +14,7 @@ getOrigin = () => {
     }
     throw new Error('FRONTEND_URL is not set');
   } else {
-    return 'http://localhost:5173';
+    return '*';
   }
 }
 
