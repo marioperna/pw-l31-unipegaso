@@ -92,7 +92,7 @@ function generateMarketOscillation(price) {
 
 function generateProductionData(productionFixedValues) {
 
-    if(Object.keys(productionFixedValues).length === 0) {
+    if(productionFixedValues && Object.keys(productionFixedValues).length === 0) {
         console.log('productionFixedValues is empty');
         return {
             quantity: 0,
