@@ -13,7 +13,6 @@ export function extractFromLocalStorage(key: string): Record<string, any> | null
 }
 
 
-
 export function saveToLocalStorage(key: string, value: Record<string, any>) {
   if (!key) {
     console.error('KEY_IS_REQUIRED');
@@ -37,6 +36,7 @@ export function removeLocalStorage(key: string) {
 
   localStorage.removeItem(key);
 }
+
 
 export function roundTo2Decimal(value: number): number {
   if (!value) return 0;
