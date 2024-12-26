@@ -1,11 +1,12 @@
 const { DateTime } = require("luxon");
 const HISTORICAL_DATA = require('./historical-data');
 
+const CLIMATIC_OSCILLATION = 0.06;
 
 function generateRealisticData(min, max) {
     const avg = (min + max) / 2;
     // apply to the avg a random value between -5% and +5%
-    const delta = avg * 0.06;
+    const delta = avg * CLIMATIC_OSCILLATION;
     const randomValue = Math.random() * 2 * delta - delta;
     const result = avg + randomValue;
     return Math.round(result * 100) / 100;
@@ -78,7 +79,6 @@ function getStatData(currentCultivation) {
 
 
 function generateMarketOscillation(price) {
-    // delta -5% / +8%
     if(!price) {
         console.log('price is empty');
         return 0;
@@ -91,7 +91,6 @@ function generateMarketOscillation(price) {
 
 
 function generateProductionData(productionFixedValues) {
-
     if(productionFixedValues && Object.keys(productionFixedValues).length === 0) {
         console.log('productionFixedValues is empty');
         return {
