@@ -7,10 +7,37 @@ export interface ClimaticData {
 }
 
 
+export interface ProductionData {
+    quantity: number;
+    waterConsumed: number;
+    energyConsumed: number;
+    totalCounts: ProductionStats;
+}
 export interface CustomIndicatorProps {
     customTemperature?: number;
     customHumidity?: number;
     customWindblow?: number;
+    customProductPrice?: number;
+    customWaterPrice?: number;
+    customEnergyPrice?: number;
+}
+
+export interface ManipulatedBusinessData extends BusinessData {
+    totalCosts: number;
+    earned: number;
+    bep: number;
+}
+
+export interface BusinessData {
+    productPrice: number;
+    waterPrice: number;
+    energyPrice: number;
+    currentMarketPrice: number;
 }
 
 
+export interface ProductionStats {
+    totalHarvested: number;
+    totalWaterConsumed: number;
+    totalEnergyConsumed: number;
+}

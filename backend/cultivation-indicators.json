@@ -34,6 +34,20 @@
             "min": 70,
             "max": 80,
             "unitMeasure": "%"
+        },
+        "productionFixedValues": {
+            "maxYearlyAmountOfHarvestedKg": 50000,
+            "pricePerKg": 0.5,
+            "waterConsumptionPerKg": 700,
+            "energyConsumptionPerKg": 1.05
+        },
+        "businessInfo": {
+            "productPrice": 3.50,
+            "productUnitMeasure": "€/kg",
+            "waterPrice": 0.001,
+            "waterUnitMeasure": "l/kg",
+            "energyPrice":  0.15,
+            "energyUnitMeasure": "kWh/kg"
         }
     },
     "RYE": {

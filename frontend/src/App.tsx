@@ -1,21 +1,23 @@
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import './App.css';
+import { MAX_CLIMATIC_SAMPLES } from './app.env';
 import { ConnectionState } from './components/ConnectionState';
 import ControlPanel from './components/ControlPanel';
 import CultivationStats from './components/CultivationStats';
 import DashboardTabs from './components/DashboardTabs';
 import { socket } from './socket';
-import { ClimaticData, CustomIndicatorProps } from './types/common';
+import { BusinessData, ClimaticData, CustomIndicatorProps, ProductionData, ProductionStats } from './types/common';
 import { Cultivation } from './types/cultivation';
 import { extractFromLocalStorage, removeLocalStorage, saveToLocalStorage } from './utilities';
-import { MAX_SAMPLES } from './app.env';
 
 function App() {
   const [isConnected, setIsConnected] = useState(socket.connected);
   const [currentCultivation, setCurrentCultivation] = useState({} as Cultivation);
   const [currentTab, setCurrentTab] = useState(0);
   const [climaticData, setClimaticData] = useState([] as ClimaticData[]);
+  const [productionData, setProductionData] = useState({} as ProductionData);
+  const [businessData, setBusinessData] = useState({} as BusinessData);
 
   const { t } = useTranslation();
 
@@ -96,9 +98,38 @@ function App() {
       setIsConnected(false);
     }
 
+    function onProductionDataEvent(data: ProductionData) {
+      console.log("Production data received", data);
+      // take only last 35 samples
+      setProductionData(previous => {
+        let totalCounts = {
+          totalHarvested: data.quantity,
+          totalWaterConsumed: data.waterConsumed,
+          totalEnergyConsumed: data.energyConsumed
+        } as ProductionStats;
+
+        if(previous && previous.totalCounts) {
+          totalCounts.totalHarvested = previous.totalCounts.totalHarvested + data.quantity;
+          totalCounts.totalWaterConsumed = previous.totalCounts.totalWaterConsumed + data.waterConsumed;
+          totalCounts.totalEnergyConsumed = previous.totalCounts.totalEnergyConsumed + data.energyConsumed;
+        }
+
+        // approssimo alla 2° cifra decimale
+        totalCounts.totalHarvested = Math.round(totalCounts.totalHarvested * 100) / 100;
+        totalCounts.totalWaterConsumed = Math.round(totalCounts.totalWaterConsumed * 100) / 100;
+        totalCounts.totalEnergyConsumed = Math.round(totalCounts.totalEnergyConsumed * 100) / 100;
+
+        return { ...data, totalCounts };
+      });
+    }
+
+    function onBusinessDataEvent(data: BusinessData) {
+      setBusinessData(data);
+    }
+
     function onClimaticDataEvent(data: ClimaticData) {
       setClimaticData(previous => {
-        if (previous.length >= MAX_SAMPLES) {
+        if (previous.length >= MAX_CLIMATIC_SAMPLES) {
           previous.shift();
         }
 
@@ -127,11 +158,15 @@ function App() {
     socket.on('connect', onConnect);
     socket.on('disconnect', onDisconnect);
     socket.on('getClimaticData', onClimaticDataEvent);
+    socket.on('getProductionData', onProductionDataEvent);
+    socket.on('getBusinessData', onBusinessDataEvent);
 
     return () => {
       socket.off('connect', onConnect);
       socket.off('disconnect', onDisconnect);
       socket.off('getClimaticData', onClimaticDataEvent);
+      socket.off('getProductionData', onProductionDataEvent);
+      socket.off('getBusinessData', onBusinessDataEvent);
     };
   }, []);
 
@@ -172,7 +207,12 @@ function App() {
                 </div>
 
                 <div id="dashboard_tabs" className='bg-white p-4 mt-4 rounded-md shadow-md'>
-                  <DashboardTabs climaticData={climaticData} onTabChange={(ct: number) => setCurrentTab(ct)} />
+                  <DashboardTabs 
+                    productionData={productionData} 
+                    businessData={businessData} 
+                    climaticData={climaticData} 
+                    onTabChange={(ct: number) => setCurrentTab(ct)} 
+                  />
                 </div>
                 {/* end contents */}
               </div>

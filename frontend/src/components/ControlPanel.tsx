@@ -36,6 +36,9 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
             case 'customWindblow':
                 payload.customWindblow = parseFloat(value);
                 break;
+            case 'customProductPrice':
+                payload.customProductPrice = parseFloat(value);
+                break;
             default:
                 break;
         }
@@ -118,6 +121,48 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onDisco
 
                 {showControlForTab === 2 && <>
                     {/* put here other fields */}
+                    <TextField
+                        label={t("PRODUCT_PRICE")}
+                        id="customProductPrice-field"
+                        name='customProductPrice'
+                        // change only when the value is fully inserted
+                        onChange={handleChange}
+                        //value={formValues.customHumidity}
+                        type='number'
+                        slotProps={{
+                            input: {
+                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
+                            },
+                        }}
+                    />
+                    <TextField
+                        label={t("WATER_PRICE")}
+                        id="customWaterPrice-field"
+                        name='customWaterPrice'
+                        // change only when the value is fully inserted
+                        onChange={handleChange}
+                        //value={formValues.customHumidity}
+                        type='number'
+                        slotProps={{
+                            input: {
+                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
+                            },
+                        }}
+                    />
+                    <TextField
+                        label={t("ENERGY_PRICE")}
+                        id="customEnergyPrice-field"
+                        name='customEnergyPrice'
+                        // change only when the value is fully inserted
+                        onChange={handleChange}
+                        //value={formValues.customHumidity}
+                        type='number'
+                        slotProps={{
+                            input: {
+                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
+                            },
+                        }}
+                    />
                 </>}
 
                 <Button variant="contained" onClick={disconnect}>{t("DISCONNECT")}</Button>

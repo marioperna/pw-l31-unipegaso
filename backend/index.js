@@ -42,10 +42,12 @@ IO.on('connection', (socket) => {
     }
 
     intervalId = setInterval(() => {
-      const generatedData = getStatData(currentCultivation);
-      console.log('generatedData:', generatedData);
+      const statData = getStatData(currentCultivation);
+      console.log('statData:', statData);
 
-      socket.emit(WEBSOCKET_CMD.GET_CLIMATIC_DATA, generatedData);
+      socket.emit(WEBSOCKET_CMD.GET_CLIMATIC_DATA, statData.climatic);
+      socket.emit(WEBSOCKET_CMD.GET_PRODUCTION_DATA, statData.production);
+      socket.emit(WEBSOCKET_CMD.GET_BUSINESS_DATA, statData.businiess);
     }, WEBSOCKET_SEND_INTERVAL);
 
     // Pulisci l'intervallo quando il client si disconnette

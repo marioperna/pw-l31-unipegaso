@@ -2,5 +2,7 @@ export const WEBSOCKET_CMD = {
     TEMPERATURE: 'GET_DASHBOARD_TEMPERATURE',
     HUMIDITY: 'GET_HUMIDITY_DATA',
     LOOKING_CULTIVATION: 'LOOKING_CULTIVATION',
-    GET_CLIMATIC_DATA: 'getClimaticData'
+    GET_CLIMATIC_DATA: 'getClimaticData',
+    GET_PRODUCTION_DATA: 'getProductionData',
+    GET_BUSINESS_DATA: 'getBusinessData',
 };

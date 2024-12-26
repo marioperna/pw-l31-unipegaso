@@ -15,5 +15,9 @@
     "WINDBLOW_PERCENTAGE": "Vento",
     "PERIOD":"Periodo",
     "HUMIDITY":"Umidità",
-    "WINDBLOW":"Vento"
+    "WINDBLOW":"Vento",
+    "QUANTITY_PRODUCED":"Quantità Prodotta",
+    "WATER_CONSUMED":"Acqua Consumata",
+    "ENERGY_CONSUMED":"Energia Consumata",
+    "PRODUCT_PRICE":"Prezzo Prodotto"
 }
