@@ -4,7 +4,7 @@ import Tabs from '@mui/material/Tabs';
 import { t } from 'i18next';
 import * as React from 'react';
 import { BusinessData, CustomIndicatorProps, ProductionData } from '../types/common';
-import { extractFromLocalStorage } from '../utilities';
+import { extractFromLocalStorage, roundTo2Decimal } from '../utilities';
 import CustomBarChart from './CustomBarChart';
 import CustomLineChart from './CustomLineChart';
 import CustomPosAndNegBarChart from './CustomPosAndNegBarChart';
@@ -45,21 +45,23 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
   const estimateWaterCosts = (productionData: ProductionData, businessData: BusinessData) => {
     let customIndicators = extractFromLocalStorage('customIndicators') as CustomIndicatorProps;
     let wprice = customIndicators?.customWaterPrice || businessData?.waterPrice || 0;
-    return productionData.waterConsumed * wprice;
+    let waterConsumed = productionData?.totalCounts?.totalWaterConsumed || 0;
+    return roundTo2Decimal(waterConsumed * wprice);
   }
 
 
   const estimateEnergyCosts = (productionData: ProductionData, businessData: BusinessData) => {
     let customIndicators = extractFromLocalStorage('customIndicators') as CustomIndicatorProps;
     let eprice = customIndicators?.customEnergyPrice || businessData?.energyPrice || 0;
-    return productionData.energyConsumed * eprice;
+    let energyConsumed = productionData?.totalCounts?.totalEnergyConsumed || 0;
+    return roundTo2Decimal(energyConsumed * eprice);
   }
 
   const estimateProfit = (productionData: ProductionData, businessData: BusinessData) => {
     let customIndicators = extractFromLocalStorage('customIndicators') as CustomIndicatorProps;
     let pprice = customIndicators?.customProductPrice || businessData?.productPrice || 0;
     let pcost = businessData?.productCost || 0;
-    return (productionData.quantity * pprice) - (productionData.quantity * pcost);
+    return roundTo2Decimal((productionData.quantity * pprice) - (productionData.quantity * pcost));
   }
 
 
