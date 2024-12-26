@@ -39,6 +39,12 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onReset
             case 'customProductPrice':
                 payload.customProductPrice = parseFloat(value);
                 break;
+            case 'customWaterPrice':
+                payload.customWaterPrice = parseFloat(value);
+                break;
+            case 'customEnergyPrice':
+                payload.customEnergyPrice = parseFloat(value);
+                break;
             default:
                 break;
         }
