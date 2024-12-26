@@ -37,3 +37,8 @@ export function removeLocalStorage(key: string) {
 
   localStorage.removeItem(key);
 }
+
+export function roundTo2Decimal(value: number): number {
+  if (!value) return 0;
+  return Math.round(value * 100) / 100;
+}

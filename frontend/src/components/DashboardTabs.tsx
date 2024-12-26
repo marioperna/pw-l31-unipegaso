@@ -133,7 +133,7 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={2} key={2}>
-        <div className='shadow-md rounded-md bg-green-200 flex flex-col md:flex-row md:justify-between'>
+        <div className='flex flex-col md:flex-row md:justify-between'>
           <div id="productionQuantityCard" className='bg-customPurple shadow-md rounded-md p-4'>
             <h1 className='font-bold text-2xl'>Totale prodotto</h1>
             <p className='text-2xl'>{productionData.totalCounts?.totalHarvested} Kg</p>

@@ -90,8 +90,6 @@ function generateMarketOscillation(price) {
 }
 
 
-
-
 function generateProductionData(productionFixedValues) {
 
     if(Object.keys(productionFixedValues).length === 0) {
