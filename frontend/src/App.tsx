@@ -72,8 +72,6 @@ function App() {
   const manageCustomIndicators = (customIndicators: CustomIndicatorProps) => {
     let existingCustomIndicators = extractFromLocalStorage('customIndicators') as CustomIndicatorProps;
 
-    if (!existingCustomIndicators) { return; }
-
     // replacing null values with 0
     Object.keys(customIndicators).forEach((key) => {
       if (!customIndicators[key as keyof CustomIndicatorProps]) {
