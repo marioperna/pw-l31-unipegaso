@@ -53,7 +53,6 @@ const CustomBarChart = ({
           {showLegend && <Legend />}
           {showTooltip && <Tooltip />}
 
-
           {(barData || []).map((bar, index) => (
             <Bar key={index} dataKey={bar.dataKey} fill={bar.fill} />
           ))}

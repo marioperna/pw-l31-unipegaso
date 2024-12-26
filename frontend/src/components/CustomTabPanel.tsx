@@ -1,10 +1,5 @@
 import { Box } from "@mui/material";
-
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
+import { TabPanelProps } from "../interfaces/tabpanel.interface";
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;

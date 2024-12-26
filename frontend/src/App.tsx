@@ -9,7 +9,6 @@ import { extractFromLocalStorage, removeLocalStorage, roundTo2Decimal, saveToLoc
 import ControlPanel from './components/ControlPanel';
 import CultivationStats from './components/CultivationStats';
 import DashboardTabs from './components/DashboardTabs';
-import './App.css';
 
 
 function App() {

@@ -1,19 +1,15 @@
-import * as React from 'react';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import CustomLineChart from './CustomLineChart';
-import { BusinessData, CustomIndicatorProps, ManipulatedBusinessData, ProductionData } from '../types/common';
-import CustomBarChart from './CustomBarChart';
+import Tab from '@mui/material/Tab';
+import Tabs from '@mui/material/Tabs';
 import { t } from 'i18next';
-import CustomPosAndNegBarChart from './CustomPosAndNegBarChart';
+import * as React from 'react';
+import { BusinessData, CustomIndicatorProps, ProductionData } from '../types/common';
 import { extractFromLocalStorage } from '../utilities';
+import CustomBarChart from './CustomBarChart';
+import CustomLineChart from './CustomLineChart';
+import CustomPosAndNegBarChart from './CustomPosAndNegBarChart';
+import { TabPanelProps } from '../interfaces/tabpanel.interface';
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
-}
 
 function CustomTabPanel(props: TabPanelProps) {
   const { children, value, index, ...other } = props;

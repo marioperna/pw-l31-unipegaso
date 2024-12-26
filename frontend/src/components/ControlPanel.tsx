@@ -1,8 +1,7 @@
+import { Box, Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { CustomIndicatorProps } from '../types/common';
-import { Box, Button, FormControl, InputAdornment, InputLabel, MenuItem, Select, TextField } from '@mui/material';
-import { DEFAULT_CULTIVATION_TYPE } from '../app.env';
 
 interface ControlPanelProps {
     onCultivationSelectorChange?: (cultivationCode: string) => void;
