@@ -29,6 +29,7 @@ export interface ManipulatedBusinessData extends BusinessData {
 }
 
 export interface BusinessData {
+    productCost: number;
     productPrice: number;
     waterPrice: number;
     energyPrice: number;

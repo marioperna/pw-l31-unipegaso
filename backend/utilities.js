@@ -67,6 +67,7 @@ function getStatData(currentCultivation) {
         },
         production: generateProductionData(productionFixedValues),
         businiess: {
+            productCost: businiessInfo.productCost,
             productPrice: businiessInfo.productPrice,
             waterPrice: businiessInfo.waterPrice,
             energyPrice: businiessInfo.energyPrice,

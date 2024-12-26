@@ -46,6 +46,27 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
     onTabChange(newValue);
   };
 
+  const estimateWaterCosts = (productionData: ProductionData, businessData: BusinessData) => {
+    let customIndicators = extractFromLocalStorage('customIndicators') as CustomIndicatorProps;
+    let wprice = customIndicators?.customWaterPrice || businessData?.waterPrice || 0;
+    return productionData.waterConsumed * wprice;
+  }
+
+
+  const estimateEnergyCosts = (productionData: ProductionData, businessData: BusinessData) => {
+    let customIndicators = extractFromLocalStorage('customIndicators') as CustomIndicatorProps;
+    let eprice = customIndicators?.customEnergyPrice || businessData?.energyPrice || 0;
+    return productionData.energyConsumed * eprice;
+  }
+
+  const estimateProfit = (productionData: ProductionData, businessData: BusinessData) => {
+    let customIndicators = extractFromLocalStorage('customIndicators') as CustomIndicatorProps;
+    let pprice = customIndicators?.customProductPrice || businessData?.productPrice || 0;
+    let pcost = businessData?.productCost || 0;
+    return (productionData.quantity * pprice) - (productionData.quantity * pcost);
+  }
+
+
   return (
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -129,14 +150,14 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           
         <CustomPosAndNegBarChart 
           data={[{
-            totalCosts: 0,
-            earned:0,
-            bep: 0
+            waterCosts: estimateWaterCosts(productionData, businessData),
+            energyCosts: estimateEnergyCosts(productionData, businessData),
+            profit: estimateProfit(productionData, businessData),
           }]}
           barData={[
-            { dataKey: 'totalCosts', fill: '#8884d8' },
-            { dataKey: 'earned', fill: '#82ca9d' },
-            { dataKey: 'bep', fill: '#ffc658' }
+            { dataKey: 'waterCosts', fill: '#8884d8' },
+            { dataKey: 'energyCosts', fill: '#82ca9d' },
+            { dataKey: 'profit', fill: '#ffc658' }
           ]}
         />
       </CustomTabPanel>

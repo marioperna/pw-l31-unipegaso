@@ -42,11 +42,12 @@
             "energyConsumptionPerKg": 1.05
         },
         "businessInfo": {
+            "productCost": 0.25,
             "productPrice": 3.50,
             "productUnitMeasure": "€/kg",
-            "waterPrice": 0.001,
+            "waterPrice": 0.004,
             "waterUnitMeasure": "l/kg",
-            "energyPrice":  0.15,
+            "energyPrice":  0.19,
             "energyUnitMeasure": "kWh/kg"
         }
     },
