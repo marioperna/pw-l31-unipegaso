@@ -1,15 +1,11 @@
-FROM node:22.11.0-alpine AS base
+FROM node:22.11.0-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
-
-RUN npm install --only=production
-
 COPY . .
 
-EXPOSE 3000
+RUN npm install
 
-ENV NODE_ENV=production
+EXPOSE 3000
 
 CMD ["npm", "start"]
