@@ -26,5 +26,6 @@
     "BARLEY_CULTIVATION":"Orzo (Hordeum vulgare)",
     "WATER_PRICE": "Prezzo Acqua",
     "ENERGY_PRICE": "Prezzo Energia",
-    "RESET": "Reset"
+    "RESET": "Reset",
+    "TOTAL_QUANTITY_PRODUCED": "Quantità Totale Prodotta"
 }
