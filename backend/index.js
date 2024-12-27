@@ -70,6 +70,6 @@ app.get('/api/indicatori-coltivazioni/:cultivationCode', (req, res) => {
   return res.json(CULTIVATION_INDICATORS[cultivationCode]);
 });
 
-server.listen(PORT, () => {
+server.listen(PORT, '0.0.0.0', () => {
   console.log(`listening on *:${PORT}`);
 });
