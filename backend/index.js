@@ -61,6 +61,10 @@ IO.on('connection', (socket) => {
 
 
 // GESTIONE API
+app.get('/', (req, res) => {
+  res.send('Backend successfully started');
+});
+
 app.get('/api/indicatori-coltivazioni/:cultivationCode', (req, res) => {
   const { cultivationCode } = req.params;
   if(!cultivationCode) {
