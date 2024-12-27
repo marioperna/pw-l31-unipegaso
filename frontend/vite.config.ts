@@ -8,11 +8,11 @@ export default defineConfig({
   server: {
     host: '0.0.0.0', // Ascolta su tutte le interfacce di rete
     port: 5173,      // La porta che vuoi esporre
-    // proxy: {
-    //   '/api': {
-    //     target: APP_BACKEND_URL,
-    //     changeOrigin: true,
-    //   },
-    // },
+    proxy: {
+      '/api': {
+        target: APP_BACKEND_URL,
+        changeOrigin: true,
+      },
+    },
   },
 })
