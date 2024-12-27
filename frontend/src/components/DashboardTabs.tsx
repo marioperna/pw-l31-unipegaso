@@ -69,13 +69,13 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
     <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
         <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Condizioni Climatiche" {...a11yProps(0)} />
-          <Tab label="Condizioni Produttive" {...a11yProps(1)} />
-          <Tab label="Condizioni Economiche" {...a11yProps(2)} />
+          <Tab label={t("CLIMATIC_CONDITIONS")} {...a11yProps(0)} />
+          <Tab label={t("PRODUCTIVE_CONDITIONS")} {...a11yProps(1)} />
+          <Tab label={t("BUSINESS_CONDITIONS")} {...a11yProps(2)} />
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0} key={0}>
-        <h1 className='text-2xl'>Temperatura</h1>
+        <h1 className='text-2xl'>{t("TEMPERATURE")}</h1>
         <CustomLineChart
           data={climaticData}
           lineDataKey='temperature'
@@ -84,7 +84,7 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           formatter={(value: number) => `${value} °C`}
         />
 
-        <h1 className='text-2xl'>Umidità</h1>
+        <h1 className='text-2xl'>{t("HUMIDITY")}</h1>
         <CustomLineChart
           data={climaticData}
           lineDataKey='humidity'
@@ -93,7 +93,7 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           formatter={(value: number) => `${value} %`}
         />
 
-        <h1 className='text-2xl'>Vento</h1>
+        <h1 className='text-2xl'>{t("WINDBLOW")}</h1>
         <CustomLineChart
           data={climaticData}
           lineDataKey='windblow'
