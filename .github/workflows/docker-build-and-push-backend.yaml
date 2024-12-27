@@ -29,6 +29,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: ./backend
+          platforms: linux/amd64,linux/arm64
           file: ./backend/Dockerfile  # Modifica il percorso se il Dockerfile si trova in una directory diversa
           push: true
           tags: ghcr.io/${{ github.repository }}/backend:${{github.ref_name}}
