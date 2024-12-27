@@ -128,7 +128,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onReset
                         type='number'
                         slotProps={{
                             input: {
-                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
+                                endAdornment: <InputAdornment position="end">€/kg</InputAdornment>,
                             },
                         }}
                     />
@@ -140,7 +140,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onReset
                         type='number'
                         slotProps={{
                             input: {
-                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
+                                endAdornment: <InputAdornment position="end">€/lt</InputAdornment>,
                             },
                         }}
                     />
@@ -152,7 +152,7 @@ function ControlPanel({ onCultivationSelectorChange, onFormValuesChange, onReset
                         type='number'
                         slotProps={{
                             input: {
-                                endAdornment: <InputAdornment position="end">mod(%)</InputAdornment>,
+                                endAdornment: <InputAdornment position="end">€/kWh</InputAdornment>,
                             },
                         }}
                     />
