@@ -4,6 +4,8 @@ WORKDIR /usr/src/app
 
 COPY . .
 
+RUN npm install
+
 RUN npm run install:all
 
 EXPOSE 5173 3000
