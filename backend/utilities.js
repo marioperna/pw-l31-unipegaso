@@ -2,6 +2,7 @@ const { DateTime } = require("luxon");
 const HISTORICAL_DATA = require('./historical-data');
 
 const CLIMATIC_OSCILLATION = 0.06;
+const SECONDS_DIVISION = 3.600; // secondi in un giorno
 
 function generateRealisticData(min, max) {
     const avg = (min + max) / 2;
@@ -100,7 +101,7 @@ function generateProductionData(productionFixedValues) {
         };
     }
 
-    let harvestPeriod = 86.400; // secondi in un giorno
+    let harvestPeriod = SECONDS_DIVISION; // secondi in un giorno
     let dateTime = DateTime.now();
     let year = dateTime.year;
     let isLeap = year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);

@@ -108,15 +108,15 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           <div className='flex flex-col space-y-4'>
             <div id="productionQuantityCard" className='bg-customPurple shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("QUANTITY_PRODUCED")}</h1>
-              <p className='text-2xl'>{productionData.quantity} Kg/s</p>
+              <p className='text-2xl'>{productionData.quantity} Kg/h</p>
             </div>
             <div id="waterConsumptionCard" className='bg-customGreen shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("WATER_CONSUMED")}</h1>
-              <p className='text-2xl'>{productionData.waterConsumed} Lt/s</p>
+              <p className='text-2xl'>{productionData.waterConsumed} Lt/h</p>
             </div>
             <div id="energyConsumptionCard" className='bg-customYellow shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("ENERGY_CONSUMED")}</h1>
-              <p className='text-2xl'>{productionData.energyConsumed} Kw/s</p>
+              <p className='text-2xl'>{productionData.energyConsumed} Kw/h</p>
             </div>
           </div>
 
