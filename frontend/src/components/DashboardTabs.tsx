@@ -81,6 +81,7 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           lineDataKey='temperature'
           xAxisDataKey='date'
           yAxisDataKey='temperature'
+          formatter={(value: number) => `${value} °C`}
         />
 
         <h1 className='text-2xl'>Umidità</h1>
@@ -89,6 +90,7 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           lineDataKey='humidity'
           xAxisDataKey='date'
           yAxisDataKey='humidity'
+          formatter={(value: number) => `${value} %`}
         />
 
         <h1 className='text-2xl'>Vento</h1>
@@ -97,6 +99,7 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           lineDataKey='windblow'
           xAxisDataKey='date'
           yAxisDataKey='windblow'
+          formatter={(value: number) => `${value} km/h`}
         />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1} key={1}>
