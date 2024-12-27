@@ -6,6 +6,6 @@ COPY . .
 
 RUN npm run install:all
 
-EXPOSE 3000 3010
+EXPOSE 5173 3000
 
 CMD [ "npm", "run", "start:all" ]
