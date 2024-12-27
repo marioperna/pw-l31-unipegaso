@@ -9,5 +9,6 @@ RUN npm install
 RUN npm run install:all
 
 EXPOSE 5173
+EXPOSE 3000
 
 CMD [ "npm", "run", "start:all" ]
