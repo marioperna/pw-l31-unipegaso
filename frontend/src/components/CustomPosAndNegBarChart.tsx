@@ -23,7 +23,8 @@ const CustomPosAndNegBarChart = ({
     showTooltip = true,
     referenceLineY = 0,
     referenceLineStroke = "#000",
-    barData = []
+    barData = [],
+    valueFormatter = (value: any) => value
 } : {
     data:{
         [key: string]: any
@@ -48,6 +49,7 @@ const CustomPosAndNegBarChart = ({
         dataKey: string,
         fill: string
     }[],  
+    valueFormatter?: (value: any) => any
 }) => {
 
     return (
@@ -61,7 +63,7 @@ const CustomPosAndNegBarChart = ({
                 <CartesianGrid strokeDasharray={cartGridStrokeDasharray} />
                 <XAxis dataKey={xAxisDataKey} />
                 <YAxis />
-                {showTooltip &&  <Tooltip />}
+                {showTooltip &&  <Tooltip formatter={valueFormatter} />}
                 {showLegend && <Legend />}
                 <ReferenceLine y={referenceLineY} stroke={referenceLineStroke} />
 

@@ -131,33 +131,39 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
       </CustomTabPanel>
 
       <CustomTabPanel value={value} index={2} key={2}>
-        <div className='flex flex-col md:flex-row md:justify-between'>
-          <div id="productionQuantityCard" className='bg-customPurple shadow-md rounded-md p-4'>
-            <h1 className='font-bold text-2xl'>Totale prodotto</h1>
-            <p className='text-2xl'>{productionData.totalCounts?.totalHarvested} Kg</p>
+
+        <div className='flex flex-col md:flex-row md:space-x-4 space-y-4'>
+          <div className='flex flex-col space-y-4'>
+            <div id="totalProductionQtyCard" className='bg-lavender shadow-md rounded-md p-4'>
+              <h1 className='font-bold text-2xl'>{t("TOTAL_QUANTITY_PRODUCED")}</h1>
+              <p className='text-2xl'>{productionData.totalCounts?.totalHarvested} Kg</p>
+            </div>
+            <div id="totalWaterConsumptionCard" className='bg-blueGray shadow-md rounded-md p-4'>
+              <h1 className='font-bold text-2xl'>{t("WATER_CONSUMED")}</h1>
+              <p className='text-2xl'>{productionData.totalCounts?.totalWaterConsumed} Lt</p>
+            </div>
+            <div id="totalEnergyConsumptionCard" className='bg-realMadridYellow shadow-md rounded-md p-4'>
+              <h1 className='font-bold text-2xl'>{t("ENERGY_CONSUMED")}</h1>
+              <p className='text-2xl'>{productionData.totalCounts?.totalEnergyConsumed} Kw</p>
+            </div>
           </div>
-          <div id="waterConsumptionCard" className='bg-customGreen shadow-md rounded-md p-4'>
-            <h1 className='font-bold text-2xl'>Acqua consumata</h1>
-            <p className='text-2xl'>{productionData.totalCounts?.totalWaterConsumed} Lt</p>
-          </div>
-          <div id="energyConsumptionCard" className='bg-customYellow shadow-md rounded-md p-4'>
-            <h1 className='font-bold text-2xl'>Energia consumata</h1>
-            <p className='text-2xl'>{productionData.totalCounts?.totalEnergyConsumed} Kw</p>
+
+          <div className='w-full'>
+            <CustomPosAndNegBarChart 
+              valueFormatter={(value: number) => `${value} €`}
+              data={[{
+                waterCosts: estimateWaterCosts(productionData, businessData),
+                energyCosts: estimateEnergyCosts(productionData, businessData),
+                profit: estimateProfit(productionData, businessData),
+              }]}
+              barData={[
+                { dataKey: 'waterCosts', fill:'#6699CC' },
+                { dataKey: 'energyCosts', fill: '#FEBE10' },
+                { dataKey: 'profit', fill: '#1CAC78' }
+              ]}
+            />
           </div>
         </div>
-          
-        <CustomPosAndNegBarChart 
-          data={[{
-            waterCosts: estimateWaterCosts(productionData, businessData),
-            energyCosts: estimateEnergyCosts(productionData, businessData),
-            profit: estimateProfit(productionData, businessData),
-          }]}
-          barData={[
-            { dataKey: 'waterCosts', fill: '#8884d8' },
-            { dataKey: 'energyCosts', fill: '#82ca9d' },
-            { dataKey: 'profit', fill: '#ffc658' }
-          ]}
-        />
       </CustomTabPanel>
     </Box>
   );
