@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import { APP_BACKEND_URL } from './src/app.env';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -10,7 +9,7 @@ export default defineConfig({
     port: 5173,      // La porta che vuoi esporre
     proxy: {
       '/api': {
-        target: APP_BACKEND_URL,
+        target: process.env.VITE_APP_BACKEND_URL,
         changeOrigin: true,
       },
     },
