@@ -4,7 +4,7 @@ import { io } from 'socket.io-client';
 // da implementare controllo su variabile di ambiente
 
 
-const VITE_APP_BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL || 'http://localhost:3000';
+const VITE_APP_BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL || 'https://pw-l31-unipegaso-be.marioperna.com';
 console.log('VITE_APP_BACKEND_URL:', VITE_APP_BACKEND_URL);
 console.log("Mode: ", import.meta.env.MODE);
 export const socket = io(VITE_APP_BACKEND_URL);
