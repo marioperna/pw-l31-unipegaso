@@ -1,0 +1,26 @@
+services:
+  fe:
+    image: ghcr.io/marioperna/pw-l31-unipegaso/frontend:main
+    networks:
+      - pw-l31-unipegaso
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro # Monta il file nginx.conf
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.fe.rule=Host(`pw-l31-unipegaso.marioperna.com`)"
+      - "traefik.http.routers.fe.entrypoints=websecure"
+      - "traefik.http.routers.fe.tls.certresolver=myresolver"
+
+  be:
+    image: ghcr.io/marioperna/pw-l31-unipegaso/backend:main
+    networks:
+      - pw-l31-unipegaso
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.be.rule=Host(`pw-l31-unipegaso-be.marioperna.com`)"
+      - "traefik.http.routers.be.entrypoints=websecure"
+      - "traefik.http.routers.be.tls.certresolver=myresolver"
+
+networks:
+  pw-l31-unipegaso:
+    external: true
