@@ -8,14 +8,7 @@ const CULTIVATION_INDICATORS = require('./cultivation-indicators');
 const { getStatData } = require('./utilities');
 
 getOrigin = () => {
-  if (process.env.NODE_ENV === 'production') {
-    if (process.env.FRONTEND_URL) {
-      return process.env.FRONTEND_URL
-    }
-    throw new Error('FRONTEND_URL is not set');
-  } else {
-    return '*';
-  }
+  return '*';
 }
 
 const PORT = process.env.PORT || 3000;
