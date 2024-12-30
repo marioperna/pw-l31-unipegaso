@@ -19,8 +19,6 @@ function CultivationStats({ currentCultivation, comparingData }: { currentCultiv
         return applyHumidityCSSClass(lastComparingData);
       case 'period':
         return applyPeriodCSSClass();
-      case 'precipitation':
-        return applyPrecipitationCSSClass(lastComparingData);
       case 'wind':
         return applyWindCSSClass(lastComparingData);
       default:
@@ -37,13 +35,6 @@ function CultivationStats({ currentCultivation, comparingData }: { currentCultiv
 
   const applyHumidityCSSClass = (lastComparingData: ClimaticData) => {
     if (lastComparingData.humidity < currentCultivation.soilHumidity.min || lastComparingData.humidity > currentCultivation.soilHumidity.max) {
-      return 'bg-red-200';
-    }
-    return 'bg-green-200';
-  }
-
-  const applyPrecipitationCSSClass = (lastComparingData: ClimaticData) => {
-    if (lastComparingData.precipitation < currentCultivation.waterQuantity.min || lastComparingData.precipitation > currentCultivation.waterQuantity.max) {
       return 'bg-red-200';
     }
     return 'bg-green-200';
@@ -82,11 +73,6 @@ function CultivationStats({ currentCultivation, comparingData }: { currentCultiv
       <div id="humidity_card" className={'w-full shadow-md rounded-md font-bold p-4 ' + applyCSSClass('humidity', lastComparingData)}>
         <h2 className='text-xl'>{t("HUMIDITY")}</h2>
         <p>{currentCultivation?.soilHumidity?.min} - {currentCultivation?.soilHumidity?.max} {currentCultivation?.soilHumidity?.unitMeasure}</p>
-      </div>
-
-      <div id="water_card" className={'w-full shadow-md rounded-md font-bold p-4 '+ applyCSSClass('precipitation', lastComparingData)}>
-        <h2 className='text-xl'>{t("PRECIPITATION")}</h2>
-        <p>{currentCultivation?.waterQuantity?.min} - {currentCultivation?.waterQuantity?.max} {currentCultivation?.waterQuantity?.unitMeasure}</p>
       </div>
 
       <div id="wind_card" className={'w-full shadow-md rounded-md font-bold p-4 '+ applyCSSClass('wind', lastComparingData)}>
