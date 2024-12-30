@@ -27,5 +27,6 @@
     "WATER_PRICE": "Prezzo Acqua",
     "ENERGY_PRICE": "Prezzo Energia",
     "RESET": "Reset",
-    "TOTAL_QUANTITY_PRODUCED": "Quantità Totale Prodotta"
+    "TOTAL_QUANTITY_PRODUCED": "Quantità Totale Prodotta",
+    "WINDBLOW_SPEED": "Velocità Vento"
 }

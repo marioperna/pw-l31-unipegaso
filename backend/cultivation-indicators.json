@@ -49,6 +49,11 @@
             "waterUnitMeasure": "l/kg",
             "energyPrice": 0.19,
             "energyUnitMeasure": "kWh/kg"
+        },
+        "optimalWindSpeed": {
+            "min": 0,
+            "max": 5,
+            "unitMeasure": "km/h"
         }
     },
     "RYE": {
@@ -101,6 +106,11 @@
             "waterUnitMeasure": "l/kg",
             "energyPrice": 0.19,
             "energyUnitMeasure": "kWh/kg"
+        },
+        "optimalWindSpeed": {
+            "min": 3,
+            "max": 8,
+            "unitMeasure": "km/h"
         }
     },
     "SOFT_WHEAT": {
@@ -153,6 +163,11 @@
             "waterUnitMeasure": "l/kg",
             "energyPrice": 0.19,
             "energyUnitMeasure": "kWh/kg"
+        },
+        "optimalWindSpeed": {
+            "min": 0,
+            "max": 5,
+            "unitMeasure": "km/h"
         }
     },
     "BARLEY": {
@@ -205,6 +220,11 @@
             "waterUnitMeasure": "l/kg",
             "energyPrice": 0.19,
             "energyUnitMeasure": "kWh/kg"
+        },
+        "optimalWindSpeed": {
+            "min": 0,
+            "max": 5,
+            "unitMeasure": "km/h"
         }
     }
 }

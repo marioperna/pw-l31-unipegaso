@@ -29,7 +29,7 @@ export type Cultivation = {
         max: number;
         unitMeasure: string;
     },
-    sunlightPercentage: {
+    optimalWindSpeed: {
         min: number;
         max: number;
         unitMeasure: string;

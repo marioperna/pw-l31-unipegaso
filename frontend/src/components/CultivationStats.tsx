@@ -19,6 +19,10 @@ function CultivationStats({ currentCultivation, comparingData }: { currentCultiv
         return applyHumidityCSSClass(lastComparingData);
       case 'period':
         return applyPeriodCSSClass();
+      case 'precipitation':
+        return applyPrecipitationCSSClass(lastComparingData);
+      case 'wind':
+        return applyWindCSSClass(lastComparingData);
       default:
         return 'bg-white';
     } 
@@ -38,6 +42,19 @@ function CultivationStats({ currentCultivation, comparingData }: { currentCultiv
     return 'bg-green-200';
   }
 
+  const applyPrecipitationCSSClass = (lastComparingData: ClimaticData) => {
+    if (lastComparingData.precipitation < currentCultivation.waterQuantity.min || lastComparingData.precipitation > currentCultivation.waterQuantity.max) {
+      return 'bg-red-200';
+    }
+    return 'bg-green-200';
+  }
+
+  const applyWindCSSClass = (lastComparingData: ClimaticData) => {
+    if (lastComparingData.windblow < currentCultivation.optimalWindSpeed.min || lastComparingData.windblow > currentCultivation.optimalWindSpeed.max) {
+      return 'bg-red-200';
+    }
+    return 'bg-green-200';
+  }
 
   const applyPeriodCSSClass = () => {
     const currentMonth = DateTime.local().month;
@@ -50,15 +67,16 @@ function CultivationStats({ currentCultivation, comparingData }: { currentCultiv
 
   return (
     <div id="stats" className='flex flex-col md:flex-row gap-4'>
-      <div id="temperature_card" className={'w-full shadow-md rounded-md font-bold p-4 ' + applyCSSClass('temperature', lastComparingData)}>
-        <h2 className='text-xl'>{t("TEMPERATURE")}</h2>
-        <p>{currentCultivation?.optimalTemperature?.min} - {currentCultivation?.optimalTemperature?.max} {currentCultivation?.optimalTemperature?.unitMeasure}</p>
-      </div>
 
       <div id="period_card" className={'w-full shadow-md rounded-md font-bold p-4 ' + applyCSSClass('period', lastComparingData)}>
         <h2 className='text-xl'>{t("PERIOD")}</h2>
         <p>{DateTime.fromObject({ month: currentCultivation?.cultivationPeriod?.start }).monthLong} - {DateTime.fromObject({ month: currentCultivation?.cultivationPeriod?.end }).monthLong}</p>
         <p className='text-sm'>({currentCultivation?.duration?.min} - {currentCultivation?.duration?.max} {currentCultivation?.duration?.unitMeasure})</p>
+      </div>
+
+      <div id="temperature_card" className={'w-full shadow-md rounded-md font-bold p-4 ' + applyCSSClass('temperature', lastComparingData)}>
+        <h2 className='text-xl'>{t("TEMPERATURE")}</h2>
+        <p>{currentCultivation?.optimalTemperature?.min} - {currentCultivation?.optimalTemperature?.max} {currentCultivation?.optimalTemperature?.unitMeasure}</p>
       </div>
 
       <div id="humidity_card" className={'w-full shadow-md rounded-md font-bold p-4 ' + applyCSSClass('humidity', lastComparingData)}>
@@ -69,6 +87,11 @@ function CultivationStats({ currentCultivation, comparingData }: { currentCultiv
       <div id="water_card" className={'w-full shadow-md rounded-md font-bold p-4 '+ applyCSSClass('precipitation', lastComparingData)}>
         <h2 className='text-xl'>{t("PRECIPITATION")}</h2>
         <p>{currentCultivation?.waterQuantity?.min} - {currentCultivation?.waterQuantity?.max} {currentCultivation?.waterQuantity?.unitMeasure}</p>
+      </div>
+
+      <div id="wind_card" className={'w-full shadow-md rounded-md font-bold p-4 '+ applyCSSClass('wind', lastComparingData)}>
+        <h2 className='text-xl'>{t("WINDBLOW_SPEED")}</h2>
+        <p>{currentCultivation?.optimalWindSpeed?.min} - {currentCultivation?.optimalWindSpeed?.max} {currentCultivation?.optimalWindSpeed?.unitMeasure}</p>
       </div>
     </div>
   );
