@@ -9,6 +9,7 @@ import CustomBarChart from './CustomBarChart';
 import CustomLineChart from './CustomLineChart';
 import CustomPosAndNegBarChart from './CustomPosAndNegBarChart';
 import { TabPanelProps } from '../interfaces/tabpanel.interface';
+import { FormControlLabel, FormGroup, Switch } from '@mui/material';
 
 
 function CustomTabPanel(props: TabPanelProps) {
@@ -36,6 +37,7 @@ function a11yProps(index: number) {
 
 function DashboardTabs({ onTabChange, climaticData, productionData, businessData }: { onTabChange: any, climaticData: any, productionData: ProductionData , businessData: BusinessData }) {
   const [value, setValue] = React.useState(0);
+  const [showProductionTotals, setShowProductionTotals] = React.useState(false);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     console.log(event);
@@ -104,20 +106,36 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
         />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1} key={1}>
+        <div className='flex justify-end'>
+          <FormGroup>
+            <FormControlLabel control={<Switch 
+                onChange={(e) => {
+                  setShowProductionTotals(e.target.checked);
+                }}
+              checked={showProductionTotals}
+            />} label={t("SHOW_TOTALS")} />
+          </FormGroup>
+        </div>
 
         <div className='flex flex-col md:flex-row md:space-x-4 space-y-4'>
           <div className='flex flex-col space-y-4'>
             <div id="productionQuantityCard" className='bg-customPurple shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("QUANTITY_PRODUCED")}</h1>
-              <p className='text-2xl'>{productionData.quantity} Kg/h</p>
+              <p className='text-2xl'>{
+                showProductionTotals ? productionData.totalCounts?.totalHarvested + ' Kg' : productionData.quantity + ' Kg/h'
+              }</p>  
             </div>
             <div id="waterConsumptionCard" className='bg-customGreen shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("WATER_CONSUMED")}</h1>
-              <p className='text-2xl'>{productionData.waterConsumed} Lt/h</p>
+              <p className='text-2xl'>{
+                showProductionTotals ? productionData.totalCounts?.totalWaterConsumed + ' Lt' : productionData.waterConsumed + ' Lt/h'
+              }</p>
             </div>
             <div id="energyConsumptionCard" className='bg-customYellow shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("ENERGY_CONSUMED")}</h1>
-              <p className='text-2xl'>{productionData.energyConsumed} Kw/h</p>
+              <p className='text-2xl'>{
+                showProductionTotals ? productionData.totalCounts?.totalEnergyConsumed + ' Kw' : productionData.energyConsumed + ' Kw/h'
+              }</p>
             </div>
           </div>
 
@@ -128,7 +146,11 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
                 { dataKey: 'waterConsumed', fill: '#82ca9d' },
                 { dataKey: 'energyConsumed', fill: '#ffc658' }
               ]}
-              data={[productionData]}
+              data={[{
+                quantity: showProductionTotals ? productionData.totalCounts?.totalHarvested : productionData.quantity,
+                waterConsumed: showProductionTotals ? productionData.totalCounts?.totalWaterConsumed : productionData.waterConsumed,
+                energyConsumed: showProductionTotals ? productionData.totalCounts?.totalEnergyConsumed : productionData.energyConsumed,
+              }]}
             />
           </div>
         </div>
@@ -140,27 +162,15 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           <div className='flex flex-col space-y-4'>
             <div id="totalProductionQtyCard" className='bg-lavender shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("TOTAL_QUANTITY_PRODUCED")}</h1>
-              <p className='text-2xl'>
-                {productionData.totalCounts?.totalHarvested} Kg
-                </hr>
-                {estimateProfit(productionData, businessData)} €
-              </p>
+              <p className='text-2xl'> {estimateProfit(productionData, businessData)} € </p>
             </div>
             <div id="totalWaterConsumptionCard" className='bg-blueGray shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("WATER_CONSUMED")}</h1>
-              <p className='text-2xl'>
-                {productionData.totalCounts?.totalWaterConsumed} Lt
-                </hr>
-                {estimateWaterCosts(productionData, businessData)} €
-              </p>
+              <p className='text-2xl'> {estimateWaterCosts(productionData, businessData)} € </p>
             </div>
             <div id="totalEnergyConsumptionCard" className='bg-realMadridYellow shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("ENERGY_CONSUMED")}</h1>
-              <p className='text-2xl'>
-                {productionData.totalCounts?.totalEnergyConsumed} Kw
-                </hr>
-                {estimateEnergyCosts(productionData, businessData)} €
-              </p>
+              <p className='text-2xl'> {estimateEnergyCosts(productionData, businessData)} € </p>
             </div>
           </div>
 

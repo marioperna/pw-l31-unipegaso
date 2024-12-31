@@ -16,7 +16,7 @@
     "PERIOD":"Periodo",
     "HUMIDITY":"Umidità",
     "WINDBLOW":"Vento",
-    "QUANTITY_PRODUCED":"Quantità Prodotta",
+    "QUANTITY_PRODUCED":"Raccolto Prodotto",
     "WATER_CONSUMED":"Acqua Consumata",
     "ENERGY_CONSUMED":"Energia Consumata",
     "PRODUCT_PRICE":"Prezzo Prodotto",
@@ -27,6 +27,12 @@
     "WATER_PRICE": "Prezzo Acqua",
     "ENERGY_PRICE": "Prezzo Energia",
     "RESET": "Reset",
-    "TOTAL_QUANTITY_PRODUCED": "Quantità Totale Prodotta",
-    "WINDBLOW_SPEED": "Velocità Vento"
+    "TOTAL_QUANTITY_PRODUCED": "Raccolto Tot. Prodotto",
+    "WINDBLOW_SPEED": "Velocità Vento",
+    "TOTAL_WATER_CONSUMED": "Acqua Tot. Consumata",
+    "TOTAL_ENERGY_CONSUMED": "Energia Tot. Consumata",
+    "ESTIMATED_PROFIT": "Profitto Stimato",
+    "ESTIMATED_WATER_COSTS": "Costi Stimati Acqua",
+    "ESTIMATED_ENERGY_COSTS": "Costi Stimati Energia",
+    "SHOW_TOTALS": "Mostra Saldi"
 }

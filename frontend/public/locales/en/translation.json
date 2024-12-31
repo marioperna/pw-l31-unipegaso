@@ -28,5 +28,11 @@
     "ENERGY_PRICE": "Energy Price",
     "RESET": "Reset",
     "TOTAL_QUANTITY_PRODUCED": "Total Quantity Produced",
-    "WINDBLOW_SPEED": "Wind Speed"
+    "WINDBLOW_SPEED": "Wind Speed",
+    "TOTAL_WATER_CONSUMED": "Total Water Consumed",
+    "TOTAL_ENERGY_CONSUMED": "Total Energy Consumed",
+    "ESTIMATED_PROFIT": "Estimated Profit",
+    "ESTIMATED_WATER_COSTS": "Estimated Water Costs",
+    "ESTIMATED_ENERGY_COSTS": "Estimated Energy Costs",
+    "SHOW_TOTALS": "Show Totals"
 }
