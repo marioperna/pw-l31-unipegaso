@@ -18,8 +18,8 @@ function CustomTabPanel(props: TabPanelProps) {
     <div
       role="tabpanel"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
+      id={`dashboard-tabpanel-${index}`}
+      aria-labelledby={`d-tab-${index}`}
       {...other}
     >
       {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
@@ -29,8 +29,8 @@ function CustomTabPanel(props: TabPanelProps) {
 
 function a11yProps(index: number) {
   return {
-    id: `simple-tab-${index}`,
-    'aria-controls': `simple-tabpanel-${index}`,
+    id: `d-tab-${index}`,
+    'aria-controls': `dashboard-tabpanel-${index}`,
   };
 }
 
@@ -140,15 +140,27 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
           <div className='flex flex-col space-y-4'>
             <div id="totalProductionQtyCard" className='bg-lavender shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("TOTAL_QUANTITY_PRODUCED")}</h1>
-              <p className='text-2xl'>{productionData.totalCounts?.totalHarvested} Kg</p>
+              <p className='text-2xl'>
+                {productionData.totalCounts?.totalHarvested} Kg
+                </hr>
+                {estimateProfit(productionData, businessData)} €
+              </p>
             </div>
             <div id="totalWaterConsumptionCard" className='bg-blueGray shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("WATER_CONSUMED")}</h1>
-              <p className='text-2xl'>{productionData.totalCounts?.totalWaterConsumed} Lt</p>
+              <p className='text-2xl'>
+                {productionData.totalCounts?.totalWaterConsumed} Lt
+                </hr>
+                {estimateWaterCosts(productionData, businessData)} €
+              </p>
             </div>
             <div id="totalEnergyConsumptionCard" className='bg-realMadridYellow shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("ENERGY_CONSUMED")}</h1>
-              <p className='text-2xl'>{productionData.totalCounts?.totalEnergyConsumed} Kw</p>
+              <p className='text-2xl'>
+                {productionData.totalCounts?.totalEnergyConsumed} Kw
+                </hr>
+                {estimateEnergyCosts(productionData, businessData)} €
+              </p>
             </div>
           </div>
 
