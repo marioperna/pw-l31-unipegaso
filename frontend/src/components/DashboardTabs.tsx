@@ -160,7 +160,7 @@ function DashboardTabs({ onTabChange, climaticData, productionData, businessData
 
         <div className='flex flex-col md:flex-row md:space-x-4 space-y-4'>
           <div className='flex flex-col space-y-4'>
-            <div id="totalProductionQtyCard" className='bg-lavender shadow-md rounded-md p-4'>
+            <div id="totalProductionQtyCard" className='bg-green-400 shadow-md rounded-md p-4'>
               <h1 className='font-bold text-2xl'>{t("TOTAL_QUANTITY_PRODUCED")}</h1>
               <p className='text-2xl'> {estimateProfit(productionData, businessData)} € </p>
             </div>
